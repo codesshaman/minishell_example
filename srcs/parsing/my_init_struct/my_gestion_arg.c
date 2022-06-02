@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_arg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:42:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 16:23:56 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:56:48 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ char	**my_recup_arg(char **tab_cmd, t_cmd *cmd)
 	else if (cmd->cmd)
 		tmp = ft_strdup(cmd->cmd);
 	res = realloc_double_tab(res, &tmp);
-	tmp = my_free_tab((void **)&tmp);
+	tmp = free_tab((void **)&tmp);
 	while ((*tab_cmd)[++x])
 	{
 		while (ft_whitespace((*tab_cmd)[x]) == 1)
 			x++;
 		tmp = my_recup_ellement(tab_cmd, &x);
 		res = realloc_double_tab(res, &tmp);
-		tmp = my_free_tab((void **)&tmp);
+		tmp = free_tab((void **)&tmp);
 		if (!(*tab_cmd)[x])
 			break ;
 	}

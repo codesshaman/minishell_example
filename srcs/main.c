@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/01 20:55:49 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/02 20:31:46 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	my_free_all(int ret)
 	x = 0;
 	while (g_term.my_env && g_term.my_env[x].key != NULL)
 	{
-		g_term.my_env[x].key = my_free_tab((void **)&(g_term.my_env[x].key));
-		g_term.my_env[x].var = my_free_tab((void **)&(g_term.my_env[x].var));
+		g_term.my_env[x].key = free_tab((void **)&(g_term.my_env[x].key));
+		g_term.my_env[x].var = free_tab((void **)&(g_term.my_env[x].var));
 		x++;
 	}
 	rl_clear_history();
 	if (g_term.my_env)
-		g_term.my_env = my_free_tab((void **)&(g_term.my_env));
+		g_term.my_env = free_tab((void **)&(g_term.my_env));
 	return (ret);
 }
 
@@ -72,7 +72,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		g_term.str_cmd = NULL;
-		g_term.str_cmd = readline(BLEU_2"Minishell> "BLANC);
+		g_term.str_cmd = readline(BLEU_2"shell-3.2$ "BLANC);
 		if (g_term.str_cmd == 0)
 		{
 			free(g_term.str_cmd);

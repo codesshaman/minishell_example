@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 11:48:19 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:57:18 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	my_sorti_2(char **str, char **res, int option, int *tub)
 		my_check_var_env(res);
 	write(2, (*res), ft_strlen((*res)));
 	write(2, ": commande introuvable\n", ft_strlen(": commande introuvable\n"));
-	*str = my_free_tab((void **)str);
-	*res = my_free_tab((void **)res);
+	*str = free_tab((void **)str);
+	*res = free_tab((void **)res);
 	exit(0);
 	return (1);
 }

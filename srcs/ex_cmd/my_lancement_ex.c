@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_lancement_ex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 08:27:33 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 09:20:10 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:56:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	my_gestion_and_ou(int	*verif, int	*verif_2)
 		&& my_check_building(g_term.cmd) == 1
 		&& g_term.cmd->pip[0] == ';'
 		&& !g_term.cmd->red)
-		g_term.cmd->cmd = my_free_tab((void **)&g_term.cmd->cmd);
+		g_term.cmd->cmd = free_tab((void **)&g_term.cmd->cmd);
 	return (1);
 }
 

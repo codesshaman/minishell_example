@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ajoue_env_export.c                                 :+:      :+:    :+:   */
+/*   add_env_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:48:53 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/27 15:29:23 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 19:25:23 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_strncmp_2(char *str1, char *str2, unsigned int size)
 	return (0);
 }
 
-int	my_check_doublon_and_cara_key(char *key, int tele)
+int	check_duplication_key(char *key, int i)
 {
 	int		x;
 
 	x = 0;
-	if (tele == 1)
+	if (i == 1)
 	{
 		while (g_term.my_env[x].key)
 		{
@@ -48,19 +48,19 @@ int	my_check_doublon_and_cara_key(char *key, int tele)
 		return (-1);
 	}
 	if (!ft_isalpha(key[x]) && key[x] != '_')
-		return (mess_err2(key));
+		return (error_message(key));
 	x++;
 	while (key[x])
 	{
 		if (!ft_isalpha(key[x]) && key[x] != '_'
 			&& !ft_isdigit(key[x]) && key[x] != '=')
-			return (mess_err2(key));
+			return (error_message(key));
 		x++;
 	}
 	return (0);
 }
 
-int	my_ajoue_new_env(char **key, char **var)
+int	add_new_env(char **key, char **var)
 {
 	int		len;
 	t_env	*new;
@@ -88,11 +88,11 @@ int	my_ajoue_new_env(char **key, char **var)
 	return (1);
 }
 
-int	my_ajoue_arg_ex(char **key, char **var)
+int	added_arg_ex(char **key, char **var)
 {
 	int	check;
 
-	check = my_check_doublon_and_cara_key(*key, 1);
+	check = check_duplication_key(*key, 1);
 	if (check >= 0)
 	{
 		if ((*key)[ft_strlen(*key) - 1] != '=')
@@ -101,9 +101,9 @@ int	my_ajoue_arg_ex(char **key, char **var)
 		g_term.my_env[check].key = *key;
 		g_term.my_env[check].var = *var;
 	}
-	if (my_check_doublon_and_cara_key(*key, 1) == -1)
+	if (check_duplication_key(*key, 1) == -1)
 	{
-		if (my_ajoue_new_env(key, var) == -1)
+		if (add_new_env(key, var) == -1)
 		{
 			free(*var);
 			free(*key);
@@ -113,7 +113,7 @@ int	my_ajoue_arg_ex(char **key, char **var)
 	return (1);
 }
 
-int	my_ajoue_arg(char **arg)
+int	added_arg(char **arg)
 {
 	int		y;
 	char	*key;
@@ -124,11 +124,11 @@ int	my_ajoue_arg(char **arg)
 	x = -1;
 	while (arg[++y])
 	{
-		key = my_recup_str(arg[y], 0);
-		if (!key || my_check_doublon_and_cara_key(key, 0) == -1)
+		key = str(arg[y], 0);
+		if (!key || check_duplication_key(key, 0) == -1)
 			return (-1);
-		var = my_recup_str(arg[y], 1);
-		if (my_ajoue_arg_ex(&key, &var) == -1)
+		var = str(arg[y], 1);
+		if (added_arg_ex(&key, &var) == -1)
 			return (-1);
 	}
 	return (1);

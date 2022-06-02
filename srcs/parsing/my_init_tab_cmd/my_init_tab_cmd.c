@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_init_tab_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:42:30 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 11:47:02 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:56:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**my_init_tab_cmd(char *str)
 		tab_cmd = my_free_double_tab((void **)tab_cmd, -1);
 		tab_cmd = ft_strdoublejoin(tmp_2, tmp);
 		tmp_2 = my_free_double_tab((void **)tmp_2, -1);
-		tmp = my_free_tab((void **)&tmp);
+		tmp = free_tab((void **)&tmp);
 		if (!(*str))
 			break ;
 		str++;

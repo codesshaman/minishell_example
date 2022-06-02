@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_traitement_arg_export.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 17:49:52 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/31 10:19:50 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:55:03 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ char	*ft_strmicrojoin(char **str, char c)
 	res[x] = c;
 	x += 1;
 	res[x] = '\0';
-	*str = my_free_tab((void **)str);
+	*str = free_tab((void **)str);
 	return (res);
 }
 
-char	*my_recup_str_2(char *arg)
+char	*str_2(char *arg)
 {
 	char	*new;
 
@@ -52,13 +52,13 @@ char	*my_recup_str_2(char *arg)
 	return (new);
 }
 
-char	*my_recup_str(char *arg, int tele)
+char	*str(char *arg, int i)
 {
 	int		x;
 	char	*new;
 
 	x = 0;
-	if (tele == 0)
+	if (i == 0)
 	{
 		while (arg[x] && arg[x] != '=')
 			x++;
@@ -73,5 +73,5 @@ char	*my_recup_str(char *arg, int tele)
 		new[x] = '\0';
 		return (new);
 	}
-	return (my_recup_str_2(arg));
+	return (str_2(arg));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_red.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:47:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 12:00:30 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:56:38 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_intra_red	*my_realoc_red(t_intra_red **red, char *fichier, char *redi)
 	len++;
 	new[len].fichier = NULL;
 	new[len].red = NULL;
-	my_free_tab((void **)red);
+	free_tab((void **)red);
 	return (new);
 }
 
@@ -63,8 +63,8 @@ int	my_recup_red_2(char **str, int *x, t_intra_red **red)
 	tmp = my_take_red(type_red, x, str);
 	tmp_2 = my_recup_ellement(str, x);
 	*red = my_realoc_red(red, tmp_2, tmp);
-	tmp = my_free_tab((void **) &tmp);
-	tmp_2 = my_free_tab((void **) &tmp_2);
+	tmp = free_tab((void **) &tmp);
+	tmp_2 = free_tab((void **) &tmp_2);
 	return (1);
 }
 

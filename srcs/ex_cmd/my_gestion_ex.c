@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_ex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:52:12 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 16:30:48 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:59:41 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	my_ex_building(t_cmd *cmd)
 	else if (ft_strncmp(cpe, "echo", 10) == 0)
 		c = my_echo(cmd->arg);
 	else if (ft_strncmp(cpe, "export", 10) == 0)
-		c = my_export(cmd->arg);
+		c = ft_export(cmd->arg);
 	else if (ft_strncmp(cpe, "unset", 10) == 0)
 		c = my_unset(cmd->arg);
 	else if (ft_strncmp(cpe, "env", 5) == 0)

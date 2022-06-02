@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_print_export.c                                  :+:      :+:    :+:   */
+/*   print_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:16:53 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/27 15:26:07 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:53:18 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*my_copy_t_env(void)
+t_env	*copy_t_env(void)
 {
 	t_env	*env;
 	int		x;
@@ -58,13 +58,13 @@ int	my_sort(t_env **tmp)
 	return (0);
 }
 
-int	my_print_export(void)
+int	print_export(void)
 {
 	int		i;
 	t_env	*tmp;
 
 	i = -1;
-	tmp = my_copy_t_env();
+	tmp = copy_t_env();
 	if (!tmp)
 		return (-1);
 	my_sort(&tmp);

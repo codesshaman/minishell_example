@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:50:53 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 11:59:49 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:56:42 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*my_recup_path(char **str)
 		res = ft_strdup(*str);
 		(*str)[len + 1] = c;
 		tmp = ft_strdup(&((*str)[len + 1]));
-		(*str) = my_free_tab((void **)str);
+		(*str) = free_tab((void **)str);
 		(*str) = tmp;
 	}
 	return (res);
@@ -93,11 +93,11 @@ char	*my_recup_path_env(char *cmd)
 		tmp_2 = ft_strjoin(tmp, cmd);
 		if (access(tmp_2, F_OK) == 0)
 		{
-			tmp_2 = my_free_tab((void **)&tmp_2);
+			tmp_2 = free_tab((void **)&tmp_2);
 			break ;
 		}
-		tmp = my_free_tab((void **)&tmp);
-		tmp_2 = my_free_tab((void **)&tmp_2);
+		tmp = free_tab((void **)&tmp);
+		tmp_2 = free_tab((void **)&tmp_2);
 	}
 	path = my_free_double_tab((void **)path, -1);
 	return (tmp);

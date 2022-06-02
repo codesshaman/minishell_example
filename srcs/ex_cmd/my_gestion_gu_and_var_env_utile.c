@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_gu_and_var_env_utile.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:53:40 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 11:49:52 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:57:14 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*my_recup_var_env(char *str, int x)
 				, ft_strlen(g_term.my_env[y].key)) == 0)
 		{
 			res = ft_strdup(g_term.my_env[y].var);
-			key = my_free_tab((void **)&key);
+			key = free_tab((void **)&key);
 			return (res);
 		}
 		y++;
 	}
-	key = my_free_tab((void **)&key);
+	key = free_tab((void **)&key);
 	return (NULL);
 }
 
@@ -70,7 +70,7 @@ int	my_change_cmd(char **str, char *var_env, int x)
 		tmp_2 = ft_strjoin(tmp, var_env);
 	else
 		tmp_2 = ft_strdup(tmp);
-	tmp = my_free_tab((void **)&tmp);
+	tmp = free_tab((void **)&tmp);
 	while ((*str)[x] && ((*str)[x] == '_' || (*str)[x] == '$'
 		|| ((*str)[x] >= 'a' && (*str)[x] <= 'z')
 		|| ((*str)[x] >= 'A' && (*str)[x] <= 'Z')
@@ -81,8 +81,8 @@ int	my_change_cmd(char **str, char *var_env, int x)
 		tmp = ft_strjoin(tmp_2, &((*str)[x]));
 	else
 		tmp = ft_strdup(tmp_2);
-	tmp_2 = my_free_tab((void **)&tmp_2);
-	*str = my_free_tab((void **)str);
+	tmp_2 = free_tab((void **)&tmp_2);
+	*str = free_tab((void **)str);
 	*str = tmp;
 	return (1);
 }
@@ -103,10 +103,10 @@ int	my_check_var_env(char **str)
 		{
 			var_env = my_recup_var_env(*str, x);
 			my_change_cmd(str, var_env, x);
-			var_env = my_free_tab((void **)&var_env);
+			var_env = free_tab((void **)&var_env);
 			if (!(*str)[0])
 			{
-				(*str) = my_free_tab((void **)str);
+				(*str) = free_tab((void **)str);
 				return (-1);
 			}
 		}

@@ -6,7 +6,7 @@
 #    By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/04 15:14:49 by mbonnet           #+#    #+#              #
-#    Updated: 2022/06/01 19:37:11 by jleslee          ###   ########.fr        #
+#    Updated: 2022/06/02 18:26:31 by jleslee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS			=	main.c\
 					building/my_echo_pwd_env.c\
 					building/export/my_export.c\
 					building/export/my_traitement_arg_export.c\
-					building/export/ajoue_env_export.c\
+					building/export/add_env_export.c\
 					building/export/my_print_export.c\
 					building/my_check_building.c\
 					free/my_free.c\

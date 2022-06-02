@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_init_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 08:24:57 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 11:25:48 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:55:35 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	my_init_parsing_2(void)
 	gu = my_check_nb_guillemet(g_term.str_cmd);
 	if (gu != 0)
 	{
-		g_term.str_cmd = my_free_tab((void **)&(g_term.str_cmd));
+		g_term.str_cmd = free_tab((void **)&(g_term.str_cmd));
 		if (gu == 2)
 			g_term.str_cmd = ft_strdup("<<\"");
 		else if (gu == 1)

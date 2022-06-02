@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_gestion_gu_and_var_env.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:53:40 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 11:15:51 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:57:09 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	my_gestion_var_env_and_gui(t_cmd *cmd)
 	}
 	if (!cmd->path)
 	{
-		cmd->path = my_free_tab((void **)&(cmd->path));
+		cmd->path = free_tab((void **)&(cmd->path));
 		cmd->path = my_recup_path(&cmd->cmd);
 		netoyage_guillemet(&cmd->path);
 	}
