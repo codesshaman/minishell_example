@@ -6,7 +6,7 @@
 #    By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/04 15:14:49 by mbonnet           #+#    #+#              #
-#    Updated: 2022/06/02 18:26:31 by jleslee          ###   ########.fr        #
+#    Updated: 2022/06/03 20:09:51 by jleslee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,34 +14,34 @@ NAME			=	minishell
 
 SRCS			=	main.c\
 					hendler/hendler.c\
-					building/my_unset.c\
-					building/my_cd.c\
-					building/my_exit.c\
-					building/my_echo_pwd_env.c\
-					building/export/my_export.c\
-					building/export/my_traitement_arg_export.c\
+					building/unset.c\
+					building/cd.c\
+					building/exit.c\
+					building/echo_pwd_env.c\
+					building/export/export.c\
+					building/export/fix_export.c\
 					building/export/add_env_export.c\
-					building/export/my_print_export.c\
-					building/my_check_building.c\
-					free/my_free.c\
-					my_init_struct_env.c\
-					parsing/my_init_parsing.c\
-					parsing/my_check_str_cmd.c\
-					parsing/utile.c\
-					parsing/my_init_tab_cmd/my_init_tab_cmd.c\
-					parsing/my_init_struct/my_init_struct.c\
-					parsing/my_init_struct/utile.c\
-					parsing/my_init_struct/my_gestion_red.c\
-					parsing/my_init_struct/my_gestion_cmd.c\
-					parsing/my_init_struct/my_gestion_arg.c\
-					ex_cmd/my_lancement_ex.c\
-					ex_cmd/my_gestion_gu_and_var_env.c\
-					ex_cmd/my_gestion_gu_and_var_env_utile.c\
-					ex_cmd/my_gestion_tub.c\
-					ex_cmd/my_gestion_red.c\
-					ex_cmd/my_gestion_heredoc.c\
-					ex_cmd/my_gestion_heredoc_2.c\
-					ex_cmd/my_gestion_ex.c\
+					building/export/print_export.c\
+					building/check_building.c\
+					free/free.c\
+					init_struct_env.c\
+					parser/init_parsing.c\
+					parser/check_str_cmd.c\
+					parser/utile.c\
+					parser/init_tab_cmd/init_tab_cmd.c\
+					parser/init_struct/init_struct.c\
+					parser/init_struct/utile.c\
+					parser/init_struct/gestion_red.c\
+					parser/init_struct/gestion_cmd.c\
+					parser/init_struct/gestion_arg.c\
+					ex_cmd/lancement_ex.c\
+					ex_cmd/gestion_gu_and_var_env.c\
+					ex_cmd/gestion_gu_and_var_env_utile.c\
+					ex_cmd/gestion_tub.c\
+					ex_cmd/gestion_red.c\
+					ex_cmd/gestion_heredoc.c\
+					ex_cmd/gestion_heredoc_2.c\
+					ex_cmd/gestion_ex.c\
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
