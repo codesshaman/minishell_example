@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_check_building.c                                :+:      :+:    :+:   */
+/*   check_building.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	my_check_building(t_cmd *cmd)
+int	check_building(t_cmd *cmd)
 {
 	if (!cmd->cmd)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:25:20 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			change_pwd(char *pwd, char *oldpwd);
 int			op(char **argv);
 int			my_cd(char **argv);
 
-int			my_check_building(t_cmd *cmd);
+int			check_building(t_cmd *cmd);
 
 int			option(char *str);
 int			my_echo(char **argv);
@@ -116,12 +116,12 @@ int			my_unset(char **argv);
 
 void		*free_tab(void **a_free);
 void		*my_free_double_tab(void **tab_str, int nb_str);
-void		*my_free_liste_chene(t_cmd *cmd);
+void		*listing(t_cmd *cmd);
 void		*my_free_maillon(t_cmd *tmp);
 int			free_all(int ret);
 
 int			my_sup_maillon(void);
-int			my_lancement_ex_2(void);
+int			launch_ex_2(void);
 int			my_print_maillon_2(t_cmd *cmd, int i);
 
 void		handler_ctr_c(int code);
@@ -138,7 +138,7 @@ int			my_check_space(char *str);
 int			main(int ac, char **av, char **envp);
 int			message_error(void);
 
-int			my_init_parsing(void);
+int			init_parsing(void);
 
 int			my_check_nb_guillemet(char *str);
 int			my_check_bad_red(char *str);
@@ -168,18 +168,18 @@ void		my_close_pip(t_cmd *cmd);
 int			launch(void);
 
 
-int			my_gestion_var_env_and_gui(t_cmd *cmd);
+int			control_var_env_and_gui(t_cmd *cmd);
 
 int			netoyage_guillemet(char **str);
 int			my_check_var_env(char **str);
 
-void		my_connect_tub(void);
-void		my_close_tub_parent(void);
-void		my_creat_tub(void);
+void		connect_pipe(void);
+void		close_pipe(void);
+void		creat_pipe(void);
 
-int			my_connect_red(void);
+int			connect_redirect(void);
 
-int			my_connect_heredoc(void);
+int			connect_heredoc(void);
 int			my_sorti_2(char **str, char **res, int option, int *tub);
 
 int			ft_strcmp(char *str1, char *str2);
@@ -188,5 +188,5 @@ int			my_concate(char **res, char *str);
 int			netoyage_guillemet_2(char **str);
 int			my_heredoc(char *deb, char *fin, int option, int *tub);
 
-int			my_exe_cmd(void);
+int			exec_cmd(void);
 #endif

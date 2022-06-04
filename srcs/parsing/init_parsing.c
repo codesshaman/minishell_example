@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_init_parsing.c                                  :+:      :+:    :+:   */
+/*   init_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -24,7 +24,7 @@ int	my_check_space_2(void)
 	return (1);
 }
 
-int	my_init_parsing_2(void)
+int	init_parsing_2(void)
 {
 	int	gu;
 
@@ -42,14 +42,14 @@ int	my_init_parsing_2(void)
 	return (0);
 }
 
-int	my_init_parsing(void)
+int	init_parsing(void)
 {
 	char	**tab_cmd;
 
 	tab_cmd = NULL;
 	if (my_check_space_2() == -1)
 		return (2);
-	if (my_init_parsing_2() == -1)
+	if (init_parsing_2() == -1)
 		return (-1);
 	tab_cmd = my_init_tab_cmd(g_term.str_cmd);
 	if (!tab_cmd)

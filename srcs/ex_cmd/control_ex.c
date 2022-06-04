@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_ex.c                                    :+:      :+:    :+:   */
+/*   control_ex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:52:12 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:59:41 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	my_exe(t_cmd *cmd)
 	return (1);
 }
 
-void	my_exe_cmd_2(void)
+void	exec_cmd_2(void)
 {
 	if (g_term.cmd->pid == 0
-		&& my_check_building(g_term.cmd) == 1
+		&& check_building(g_term.cmd) == 1
 		&& g_term.cmd->pip[0] == ';'
 		&& !g_term.cmd->red)
 		exit (0);
@@ -82,7 +82,7 @@ void	my_exe_cmd_2(void)
 		}
 		if (g_term.cmd->pid == 0)
 		{
-			if (my_check_building(g_term.cmd) == 1)
+			if (check_building(g_term.cmd) == 1)
 				g_term.dernier_ret = my_ex_building(g_term.cmd);
 			else
 				g_term.dernier_ret = my_exe(g_term.cmd);
@@ -90,7 +90,7 @@ void	my_exe_cmd_2(void)
 	}
 }
 
-int	my_exe_cmd(void)
+int	exec_cmd(void)
 {
 	int		x;
 
@@ -99,7 +99,7 @@ int	my_exe_cmd(void)
 	{
 		while (x < g_term.nb_maillon)
 		{
-			if (my_check_building(g_term.cmd) == 1
+			if (check_building(g_term.cmd) == 1
 				&& g_term.cmd->pip[0] == ';'
 				&& !g_term.cmd->red)
 			{
@@ -111,7 +111,7 @@ int	my_exe_cmd(void)
 			x++;
 		}
 	}
-	my_exe_cmd_2();
+	exec_cmd_2();
 	return (1);
 }
 

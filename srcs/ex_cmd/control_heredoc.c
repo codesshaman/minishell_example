@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_heredoc.c                               :+:      :+:    :+:   */
+/*   control_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:57:18 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:34:51 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	my_lancement_heredoc(char *deb, char *fin)
 	return (1);
 }
 
-int	my_connect_heredoc(void)
+int	connect_heredoc(void)
 {
 	int		x;
 	char	*fin;

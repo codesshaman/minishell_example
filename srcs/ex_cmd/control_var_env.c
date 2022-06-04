@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_gu_and_var_env.c                        :+:      :+:    :+:   */
+/*   control_var_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:53:40 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:57:09 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:38:42 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	my_check_red_var_env(t_intra_red *tabe)
 	return (1);
 }
 
-int	my_gestion_var_env_and_gui(t_cmd *cmd)
+int	control_var_env_and_gui(t_cmd *cmd)
 {
 	if (cmd->cmd)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_exit.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 11:52:38 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 19:31:10 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:31:58 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ex_exit(int nbr, int err, char *str)
 	}
 	if (err == 2)
 		write (2, "minishell: exit: too many arguments\n", 37);
-	my_free_liste_chene(g_term.cmd);
+	listing(g_term.cmd);
 	free_all(0);
 	exit (nbr);
 }

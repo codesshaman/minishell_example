@@ -3,58 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_env.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   Bj: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 08:32:43 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 12:28:18 by mbonnet          ###   ########.fr       */
+/*   Created: 2022/01/31 08:32:43 bj mbonnet           #+#    #+#             */
+/*   Updated: 2022/02/02 12:28:18 bj mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*my_env_key(char *env)
+char	*env_key(char *env)
 {
-	int		x;
+	int		i;
 	char	*res;
 
-	x = 0;
-	while (env[x] && env[x] != '=')
-		x++;
-	x++;
-	res = malloc(sizeof(char) * (x + 1));
+	i = 0;
+	while (env[i] && env[i] != '=')
+		i++;
+	i++;
+	res = malloc(sizeof(char) * (i + 1));
 	if (!res)
 		return (NULL);
-	x = 0;
-	while (env[x] && env[x] != '=')
+	i = 0;
+	while (env[i] && env[i] != '=')
 	{
-		res[x] = env[x];
-		x++;
+		res[i] = env[i];
+		i++;
 	}
-	res[x] = env[x];
-	res[++x] = '\0';
+	res[i] = env[i];
+	res[++i] = '\0';
 	return (res);
 }
 
-char	*my_env_var(char *env)
+char	*env_var(char *env)
 {
-	int		x;
+	int		i;
 	int		len;
 	char	*res;
 
-	x = 0;
+	i = 0;
 	len = 0;
-	while (env[x] && env[x] != '=')
-		x++;
-	x++;
-	while (env[x + len])
+	while (env[i] && env[i] != '=')
+		i++;
+	i++;
+	while (env[i + len])
 		len++;
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
 	len = 0;
-	while (env[x + len])
+	while (env[i + len])
 	{
-		res[len] = env[x + len];
+		res[len] = env[i + len];
 		len++;
 	}
 	res[len] = '\0';
@@ -63,25 +63,25 @@ char	*my_env_var(char *env)
 
 int	init_struct_env(void)
 {
-	int	y;
-	int	x;
+	int	j;
+	int	i;
 
-	y = 0;
-	x = 0;
-	while (g_term.envp[y])
-		y++;
-	g_term.my_env = malloc(sizeof(t_env) * (y + 1));
+	j = 0;
+	i = 0;
+	while (g_term.envp[j])
+		j++;
+	g_term.my_env = malloc(sizeof(t_env) * (j + 1));
 	if (!g_term.my_env)
 		return (-1);
-	while (x < y)
+	while (i < j)
 	{
-		g_term.my_env[x].key = my_env_key(g_term.envp[x]);
-		g_term.my_env[x].var = my_env_var(g_term.envp[x]);
-		if (!g_term.my_env[x].var || !g_term.my_env[x].key)
+		g_term.my_env[i].key = env_key(g_term.envp[i]);
+		g_term.my_env[i].var = env_var(g_term.envp[i]);
+		if (!g_term.my_env[i].var || !g_term.my_env[i].key)
 			return (-1);
-		x++;
+		i++;
 	}
-	g_term.my_env[x].key = NULL;
-	g_term.my_env[x].var = NULL;
+	g_term.my_env[i].key = NULL;
+	g_term.my_env[i].var = NULL;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:35:30 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 19:54:15 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:36:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	my_recup_fd(char *fichier, int x)
 	return (fd);
 }
 
-int	my_connect_red(void)
+int	connect_redirect(void)
 {
 	int		x;
 	int		fd;

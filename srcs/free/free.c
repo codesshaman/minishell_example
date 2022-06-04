@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_free.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:01:20 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:54:45 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:31:58 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*my_free_double_tab(void **tab_str, int nb_str)
 	return (NULL);
 }
 
-void	*my_free_liste_chene(t_cmd *cmd)
+void	*listing(t_cmd *cmd)
 {
 	int			i;
 	int			x;

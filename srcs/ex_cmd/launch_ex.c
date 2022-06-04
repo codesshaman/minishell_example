@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lancement_ex.c                                     :+:      :+:    :+:   */
+/*   launch_ex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 08:27:33 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:15:22 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
-int	my_gestion_and_ou(int	*verif, int	*verif_2)
+int	control_logic_operation(int	*verif, int	*verif_2)
 {
 	if (g_term.cmd->pid != 0)
 	{
@@ -32,14 +32,14 @@ int	my_gestion_and_ou(int	*verif, int	*verif_2)
 		usleep(1000);
 	}
 	if ((*verif != 0 || *verif_2 == 0)
-		&& my_check_building(g_term.cmd) == 1
+		&& check_building(g_term.cmd) == 1
 		&& g_term.cmd->pip[0] == ';'
 		&& !g_term.cmd->red)
 		g_term.cmd->cmd = free_tab((void **)&g_term.cmd->cmd);
 	return (1);
 }
 
-void	my_creat_fork(void)
+void	creat_fork(void)
 {
 	t_cmd	*tmp;
 	int		x;
@@ -53,7 +53,7 @@ void	my_creat_fork(void)
 	while (x++ < g_term.nb_maillon)
 	{
 		g_term.cmd->pid = -1;
-		my_gestion_and_ou(&verif, &verif_2);
+		control_logic_operation(&verif, &verif_2);
 		if (verif == 0 && verif_2 != 0)
 		{
 			g_term.cmd->pid = fork();
@@ -67,7 +67,7 @@ void	my_creat_fork(void)
 	g_term.cmd = tmp;
 }
 
-void	my_boucle_waitpid(void)
+void	waiting_loop(void)
 {
 	t_cmd	*tmp;
 	int		x;
@@ -88,21 +88,21 @@ void	my_boucle_waitpid(void)
 	g_term.cmd = tmp;
 }
 
-int	my_lancement_ex_2(void)
+int	launch_ex_2(void)
 {
-	my_creat_tub();
-	my_creat_fork();
-	my_gestion_var_env_and_gui(g_term.cmd);
+	creat_pipe();
+	creat_fork();
+	control_var_env_and_gui(g_term.cmd);
 	if (g_term.cmd->pid == 0)
 	{
-		my_connect_tub();
-		if (my_connect_red() == -1)
+		connect_pipe();
+		if (connect_redirect() == -1)
 			return (-1);
-		my_connect_heredoc();
+		connect_heredoc();
 	}
-	my_close_tub_parent();
-	my_exe_cmd();
-	my_boucle_waitpid();
+	close_pipe();
+	exec_cmd();
+	waiting_loop();
 	return (1);
 }
 
@@ -110,19 +110,19 @@ int	launch(void)
 {
 	int	parsing;
 
-	parsing = my_init_parsing();
+	parsing = init_parsing();
 	if (parsing != 0)
 	{
 		if (parsing == 3 || parsing == -1)
-			printf(ROUGE"Minishell: erreur de syntax\n"BLANC);
-		my_free_liste_chene(g_term.cmd);
+			printf(ROUGE"Syntax error\n"BLANC);
+		listing(g_term.cmd);
 		return (1);
 	}
 	signal(SIGQUIT, handler_ctr_backslash);
 	signal(SIGINT, handler_ctr_c_2);
-	my_lancement_ex_2();
+	launch_ex_2();
 	signal(SIGINT, handler_ctr_c);
 	signal(SIGQUIT, SIG_IGN);
-	my_free_liste_chene(g_term.cmd);
+	listing(g_term.cmd);
 	return (1);
 }

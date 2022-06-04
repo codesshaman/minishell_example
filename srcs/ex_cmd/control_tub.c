@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_tub.c                                   :+:      :+:    :+:   */
+/*   control_tub.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:24:41 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 12:16:04 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:39:12 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	my_close_pip(t_cmd *cmd)
 	close(cmd->tub[SORTI]);
 }
 
-void	my_connect_tub(void)
+void	connect_pipe(void)
 {
 	if (ft_strncmp(g_term.cmd->pip, "|", 3) == 0)
 	{
@@ -38,7 +38,7 @@ void	my_connect_tub(void)
 	}
 }
 
-void	my_close_tub_parent(void)
+void	close_pipe(void)
 {
 	t_cmd	*tmp;
 	int		x;
@@ -53,7 +53,7 @@ void	my_close_tub_parent(void)
 	g_term.cmd = tmp;
 }
 
-void	my_creat_tub(void)
+void	creat_pipe(void)
 {
 	t_cmd	*tmp;
 	int		x;
