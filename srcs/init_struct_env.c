@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_init_struct_env.c                               :+:      :+:    :+:   */
+/*   init_struct_env.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -61,7 +61,7 @@ char	*my_env_var(char *env)
 	return (res);
 }
 
-int	my_init_struct_env(void)
+int	init_struct_env(void)
 {
 	int	y;
 	int	x;

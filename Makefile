@@ -6,9 +6,10 @@
 #    By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/04 15:14:49 by mbonnet           #+#    #+#              #
-#    Updated: 2022/06/04 19:48:19 by jleslee          ###   ########.fr        #
+#    Updated: 2022/06/04 20:19:31 by jleslee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME			=	minishell 
 
@@ -34,7 +35,7 @@ SRCS			=	main.c\
 					parsing/init_struct/control_red.c\
 					parsing/init_struct/control_cmd.c\
 					parsing/init_struct/control_arg.c\
-					ex_cmd/lancement_ex.c\
+					ex_cmd/launch_ex.c\
 					ex_cmd/control_var_env.c\
 					ex_cmd/control_var_env_utile.c\
 					ex_cmd/control_tub.c\
@@ -42,6 +43,7 @@ SRCS			=	main.c\
 					ex_cmd/control_heredoc.c\
 					ex_cmd/control_heredoc_2.c\
 					ex_cmd/control_ex.c\
+
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 

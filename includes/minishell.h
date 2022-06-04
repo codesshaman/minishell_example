@@ -6,8 +6,10 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 19:35:27 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:25:20 by jleslee          ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
@@ -81,13 +83,14 @@ int			ft_export(char **argv);
 
 t_env		*copy_t_env(void);
 int			sort(t_env **tmp);
+
 int			print_export(void);
 
 void		my_para(int *para, char *str);
 int			ft_len_2(char *str);
 char		*ft_strmicrojoin(char **str, char c);
 int			nmy_gestion_env_heredoc(char **tmp);
-int			my_init_struct_env(void);
+int			init_struct_env(void);
 
 int			change_pwd(char *pwd, char *oldpwd);
 int			op(char **argv);
@@ -128,6 +131,10 @@ void		handler_ctr_backslash(int code);
 int			my_print_list_chene(t_cmd *cmd);
 int			my_print_maillon(t_cmd *cmd, int i);
 
+
+int			mise_en_place_de_lancement(int ac, char **envp);
+int			my_check_space(char *str);
+
 int			main(int ac, char **av, char **envp);
 int			message_error(void);
 
@@ -159,6 +166,7 @@ char		**my_recup_arg(char **tab_cmd, t_cmd *cmd);
 void		my_close_pip(t_cmd *cmd);
 
 int			launch(void);
+
 
 int			my_gestion_var_env_and_gui(t_cmd *cmd);
 

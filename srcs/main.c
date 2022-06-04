@@ -6,12 +6,12 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 19:35:23 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:25:20 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "minishell.h"
-# include <stdio.h>
 
 t_term	g_term;
 
@@ -64,7 +64,7 @@ int	launch_setup(int ac, char **envp)
 	signal(SIGQUIT, SIG_IGN);
 	g_term.envp = envp;
 	g_term.my_env = NULL;
-	if (my_init_struct_env() == -1)
+	if (init_struct_env() == -1)
 		return (-1);
 	return (1);
 }
