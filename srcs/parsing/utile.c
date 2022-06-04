@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utile.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:22:31 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/31 20:38:55 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/02 18:55:44 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	my_sup_char(char **str, int x)
 	tmp = ft_strdup((*str));
 	(*str)[x] = c;
 	tmp_2 = ft_strjoin(tmp, &((*str)[x + 1]));
-	*str = my_free_tab((void **)str);
+	*str = free_tab((void **)str);
 	*str = tmp_2;
 	return (1);
 }
