@@ -6,13 +6,13 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 11:40:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:49:30 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:54:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*my_init_maillon(char *tab_cmd)
+t_cmd	*init_node(char *tab_cmd)
 {
 	t_cmd	*tmp;
 
@@ -31,12 +31,12 @@ t_cmd	*my_init_maillon(char *tab_cmd)
 	return (tmp);
 }
 
-int	my_add_liste_chene(t_cmd *tmp)
+int	add_new_element(t_cmd *tmp)
 {
-	int		x;
+	int		i;
 	t_cmd	*tmp_1;
 
-	x = 0;
+	i = 0;
 	if (!tmp)
 		return (-1);
 	if (!g_term.cmd)
@@ -48,7 +48,7 @@ int	my_add_liste_chene(t_cmd *tmp)
 	else
 	{
 		tmp_1 = g_term.cmd;
-		while (++x < g_term.nb_maillon)
+		while (++i < g_term.nb_maillon)
 			g_term.cmd = g_term.cmd->next;
 		g_term.cmd->next = tmp;
 		tmp_1->prev = tmp;
@@ -60,17 +60,17 @@ int	my_add_liste_chene(t_cmd *tmp)
 	return (1);
 }
 
-int	my_create_cmd(char **tab_cmd)
+int	create_cmd(char **tab_cmd)
 {
-	int		x;
+	int		i;
 
-	x = 0;
+	i = 0;
 	g_term.nb_maillon = 0;
-	while (tab_cmd[x])
+	while (tab_cmd[i])
 	{
-		if (my_add_liste_chene(my_init_maillon(tab_cmd[x])) == -1)
+		if (add_new_element(init_node(tab_cmd[i])) == -1)
 			return (-1);
-		x++;
+		i++;
 	}
 	return (1);
 }

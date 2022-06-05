@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:51:42 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:56:15 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,11 @@ int			sub_char(char **str, int x);
 
 char		**my_init_tab_cmd(char *str);
 
-int			my_create_cmd(char **tab_cmd);
+int			create_cmd(char **tab_cmd);
 
-int			check_redirect_pip(char *str);
+int			check_redirect_pipe(char *str);
 char		*recup_ellement(char **str, int *x);
-char		*take_red(int choose, int *x, char **str);
+char		*take_redirect(int choose, int *x, char **str);
 
 t_intra_red	*my_recup_red(char **str);
 

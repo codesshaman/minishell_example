@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:47:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:51:55 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:56:15 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	recup_red_2(char **str, int *i, t_intra_red **red)
 	int			type_red;
 
 	type_red = 0;
-	type_red = check_redirect_pip(&(*str)[*i]);
+	type_red = check_redirect_pipe(&(*str)[*i]);
 	if (type_red < 5)
 		return (-1);
-	tmp = take_red(type_red, i, str);
+	tmp = take_redirect(type_red, i, str);
 	tmp_2 = recup_ellement(str, i);
 	*red = realoc_red(red, tmp_2, tmp);
 	tmp = free_tab((void **) &tmp);

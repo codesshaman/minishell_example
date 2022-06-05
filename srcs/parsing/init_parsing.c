@@ -57,7 +57,7 @@ int	init_parsing(void)
 		tab_cmd = free_double_tab((void **)tab_cmd, -1);
 		return (3);
 	}
-	if (my_create_cmd(tab_cmd) == -1)
+	if (create_cmd(tab_cmd) == -1)
 	{
 		printf(ROUGE"Erreur lor du malloc de la structur\n"BLANC);
 		tab_cmd = free_double_tab((void **)tab_cmd, -1);

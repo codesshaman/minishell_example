@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:42:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:51:42 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:56:15 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ char	*recup_pipe(char **cmd)
 		check_quote(&quote, (*cmd)[i]);
 		if (quote != 0)
 			continue ;
-		red = check_redirect_pip(&((*cmd)[i]));
+		red = check_redirect_pipe(&((*cmd)[i]));
 		if (red > 0 && red < 5)
-			res = take_red(red, &i, cmd);
+			res = take_redirect(red, &i, cmd);
 		if (!(*cmd)[i])
 			break ;
 	}

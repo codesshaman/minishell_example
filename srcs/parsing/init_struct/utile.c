@@ -6,13 +6,13 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 11:47:47 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:51:42 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:58:34 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_redirect_pip(char *str)
+int	check_redirect_pipe(char *str)
 {
 	if (str[0] == '&' && str[1] == '&')
 		return (3);
@@ -33,15 +33,15 @@ int	check_redirect_pip(char *str)
 	return (0);
 }
 
-char	*take_red(int choose, int *x, char **str)
+char	*take_redirect(int choose, int *i, char **str)
 {
 	if (choose > 2 && choose < 7)
 	{
-		(*str)[(*x)++] = ' ';
-		(*str)[(*x)++] = ' ';
+		(*str)[(*i)++] = ' ';
+		(*str)[(*i)++] = ' ';
 	}
 	else
-		(*str)[(*x)++] = ' ';
+		(*str)[(*i)++] = ' ';
 	if (choose == 1)
 		return (ft_strdup("|"));
 	else if (choose == 2)
@@ -61,29 +61,29 @@ char	*take_red(int choose, int *x, char **str)
 	return (0);
 }
 
-char	*recup_ellement(char **str, int *x)
+char	*recup_ellement(char **str, int *i)
 {
 	char	*new;
 	int		gu;
-	int		i;
+	int		j;
 
-	i = 0;
+	j = 0;
 	gu = 0;
 	new = NULL;
-	while (ft_whitespace((*str)[*x]) == 1)
-		(*x)++;
-	while ((*str)[*x + i])
+	while (ft_whitespace((*str)[*i]) == 1)
+		(*i)++;
+	while ((*str)[*i + j])
 	{
-		check_quote(&gu, (*str)[*x + i]);
-		if (!(*str)[*x + i] || (gu == 0 && (ft_whitespace((*str)[*x + i]) == 1
-			|| check_redirect_pip(&(*str)[*x + i]) > 0)))
+		check_quote(&gu, (*str)[*i + j]);
+		if (!(*str)[*i + j] || (gu == 0 && (ft_whitespace((*str)[*i + j]) == 1
+			|| check_redirect_pipe(&(*str)[*i + j]) > 0)))
 			return (new);
 		else
 		{
-			new = ft_strmicrojoin(&new, (*str)[*x + i]);
-			(*str)[*x + i] = ' ';
+			new = ft_strmicrojoin(&new, (*str)[*i + j]);
+			(*str)[*i + j] = ' ';
 		}
-		(*x)++;
+		(*i)++;
 	}
 	return (new);
 }
