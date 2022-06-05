@@ -6,53 +6,53 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:17:25 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:39:22 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 21:03:35 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_check_nb_guillemet(char *str)
+int	check_nb_quotes(char *str)
 {
-	int	x;
-	int	gu;
+	int	i;
+	int	quote;
 
-	x = 0;
-	gu = 0;
-	while (str[x])
+	i = 0;
+	quote = 0;
+	while (str[i])
 	{
-		if (gu == 0 && str[x] == '\'')
-			gu = 1;
-		else if (gu == 0 && str[x] == '\"')
-			gu = 2;
-		else if (gu == 1 && str[x] == '\'')
-			gu = 0;
-		else if (gu == 2 && str[x] == '\"')
-			gu = 0;
-		x++;
+		if (quote == 0 && str[i] == '\'')
+			quote = 1;
+		else if (quote == 0 && str[i] == '\"')
+			quote = 2;
+		else if (quote == 1 && str[i] == '\'')
+			quote = 0;
+		else if (quote == 2 && str[i] == '\"')
+			quote = 0;
+		i++;
 	}
-	return (gu);
+	return (quote);
 }
 
-int	my_check_bad_red(char *str)
+int	check_bad_redirect(char *str)
 {
-	int	x;
-	int	gu;
+	int	i;
+	int	quote;
 	int	tem;
 
-	x = 0;
-	gu = 0;
+	i = 0;
+	quote = 0;
 	tem = 0;
-	while (str[x])
+	while (str[i])
 	{
-		check_quote(&gu, str[x]);
-		if (check_redirect(gu, str[x]) < 0)
+		check_quote(&quote, str[i]);
+		if (check_redirect(quote, str[i]) < 0)
 			tem++;
 		else
 			tem = 0;
 		if (tem == 3)
 			return (-1);
-		x++;
+		i++;
 	}
 	return (1);
 }

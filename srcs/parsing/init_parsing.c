@@ -12,32 +12,32 @@
 
 #include "minishell.h"
 
-int	my_check_space_2(void)
+int	check_space_2(void)
 {
-	int	x;
+	int	i;
 
-	x = 0;
-	while (ft_whitespace(g_term.str_cmd[x]) == 1)
-		x++;
-	if (!g_term.str_cmd[x])
+	i = 0;
+	while (ft_whitespace(g_term.str_cmd[i]) == 1)
+		i++;
+	if (!g_term.str_cmd[i])
 		return (-1);
 	return (1);
 }
 
 int	init_parsing_2(void)
 {
-	int	gu;
+	int	quote;
 
-	gu = my_check_nb_guillemet(g_term.str_cmd);
-	if (gu != 0)
+	quote = check_nb_quotes(g_term.str_cmd);
+	if (quote != 0)
 	{
 		g_term.str_cmd = free_tab((void **)&(g_term.str_cmd));
-		if (gu == 2)
+		if (quote == 2)
 			g_term.str_cmd = ft_strdup("<<\"");
-		else if (gu == 1)
+		else if (quote == 1)
 			g_term.str_cmd = ft_strdup("<<\'");
 	}
-	if (my_check_bad_red(g_term.str_cmd) == -1)
+	if (check_bad_redirect(g_term.str_cmd) == -1)
 		return (-1);
 	return (0);
 }
@@ -47,11 +47,11 @@ int	init_parsing(void)
 	char	**tab_cmd;
 
 	tab_cmd = NULL;
-	if (my_check_space_2() == -1)
+	if (check_space_2() == -1)
 		return (2);
 	if (init_parsing_2() == -1)
 		return (-1);
-	tab_cmd = my_init_tab_cmd(g_term.str_cmd);
+	tab_cmd = init_tab_cmd(g_term.str_cmd);
 	if (!tab_cmd)
 	{
 		tab_cmd = free_double_tab((void **)tab_cmd, -1);
@@ -59,7 +59,7 @@ int	init_parsing(void)
 	}
 	if (create_cmd(tab_cmd) == -1)
 	{
-		printf(ROUGE"Erreur lor du malloc de la structur\n"BLANC);
+		printf(ROUGE"Memory allocation error\n"BLANC);
 		tab_cmd = free_double_tab((void **)tab_cmd, -1);
 		return (-2);
 	}

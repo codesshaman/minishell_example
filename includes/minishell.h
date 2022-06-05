@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:56:15 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 21:09:42 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int			check_duplication_key(char *key, int tele);
 int			add_new_env(char **key, char **var);
 int			added_arg_ex(char **key, char **var);
 int			added_arg(char **arg);
+void		start_write(void);
 
 int			error_message(char *str);
 int			ft_export(char **argv);
@@ -140,14 +141,14 @@ int			message_error(void);
 
 int			init_parsing(void);
 
-int			my_check_nb_guillemet(char *str);
-int			my_check_bad_red(char *str);
+int			check_nb_quotes(char *str);
+int			check_bad_redirect(char *str);
 
 int			check_quote(int *gu, char c);
 int			check_redirect(int gu, char c);
 int			sub_char(char **str, int x);
 
-char		**my_init_tab_cmd(char *str);
+char		**init_tab_cmd(char *str);
 
 int			create_cmd(char **tab_cmd);
 
