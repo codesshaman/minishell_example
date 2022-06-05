@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_ex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:52:12 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 21:03:24 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/05 19:09:18 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ex_building(t_cmd *cmd)
 	else if (ft_strncmp(cpe, "unset", 10) == 0)
 		c = ft_unset(cmd->arg);
 	else if (ft_strncmp(cpe, "env", 5) == 0)
-		c = my_env(cmd);
+		c = ft_env(cmd);
 	else if (ft_strncmp(cpe, "exit", 5) == 0)
 		ft_exit(cmd->arg);
 	else
@@ -105,7 +105,7 @@ int	exec_cmd(void)
 			{
 				g_term.dernier_ret = ex_building(g_term.cmd);
 				if (g_term.dernier_ret != 0)
-					dprintf(2, ROUGE"Minishell: aucun fichier\n"BLANC);
+					dprintf(2, ROUGE"shell: file not foundr\n"BLANC);
 			}
 			g_term.cmd = g_term.cmd->next;
 			x++;
@@ -118,10 +118,10 @@ int	exec_cmd(void)
 int	message_error(void)
 {
 	if (g_term.dernier_ret == 255 || g_term.dernier_ret == 139)
-		printf(ROUGE"Minishell: %s : command not found\n"BLANC,
+		printf(ROUGE"shell: %s : command not found\n"BLANC,
 			g_term.cmd->cmd);
 	if (g_term.dernier_ret == -1)
-		printf(ROUGE"Minishell: %s : arg incorecte\n"BLANC,
+		printf(ROUGE"shell: %s : too many arguments\n"BLANC,
 			g_term.cmd->cmd);
 	return (1);
 }

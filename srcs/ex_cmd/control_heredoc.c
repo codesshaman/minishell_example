@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 21:09:15 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/05 19:29:33 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_sort_2(char **str, char **res, int option, int *tub)
 	dup2(tub[ENTRE], 1);
 	close(tub[ENTRE]);
 	if (option == 0)
-		my_check_var_env(res);
+		check_var_env(res);
 	write(2, (*res), ft_strlen((*res)));
-	write(2, ": commande introuvable\n", ft_strlen(": commande introuvable\n"));
+	write(2, ": command not found\n", ft_strlen(": command not found\n"));
 	*str = free_tab((void **)str);
 	*res = free_tab((void **)res);
 	exit(0);
@@ -29,15 +29,15 @@ int	ft_sort_2(char **str, char **res, int option, int *tub)
 
 int	choose_option(char *fin, char *deb)
 {
-	int	x;
+	int	i;
 
-	x = -1;
-	while (fin[++x])
-		if (fin[x] == '\"' || fin[x] == '\'')
+	i = -1;
+	while (fin[++i])
+		if (fin[i] == '\"' || fin[i] == '\'')
 			return (1);
-	x = -1;
-	while (deb && deb[++x])
-		if (deb[x] == '\"' || deb[x] == '\'')
+	i = -1;
+	while (deb && deb[++i])
+		if (deb[i] == '\"' || deb[i] == '\'')
 			return (1);
 	return (0);
 }
@@ -64,27 +64,27 @@ int	my_lancement_heredoc(char *deb, char *fin)
 
 int	connect_heredoc(void)
 {
-	int		x;
+	int		i;
 	char	*fin;
 	char	*deb;
 
-	x = 0;
+	i = 0;
 	fin = NULL;
 	deb = NULL;
-	while (g_term.cmd->red && g_term.cmd->red[x].red)
+	while (g_term.cmd->red && g_term.cmd->red[i].red)
 	{
-		if (ft_strncmp(g_term.cmd->red[x].red, "<<", 3) == 0
-			&& (!g_term.cmd->red[x + 1].red
-				|| ft_strncmp(g_term.cmd->red[x + 1].red, "<<", 3) != 0))
+		if (ft_strncmp(g_term.cmd->red[i].red, "<<", 3) == 0
+			&& (!g_term.cmd->red[i + 1].red
+				|| ft_strncmp(g_term.cmd->red[i + 1].red, "<<", 3) != 0))
 		{
-			fin = g_term.cmd->red[x].fichier;
+			fin = g_term.cmd->red[i].file;
 			break ;
 		}
-		if (ft_strncmp(g_term.cmd->red[x].red, "<<", 3) == 0
-			&& g_term.cmd->red[x].red
-			&& ft_strncmp(g_term.cmd->red[x + 1].red, "<<", 3) == 0)
-			deb = g_term.cmd->red[x].fichier;
-		x++;
+		if (ft_strncmp(g_term.cmd->red[i].red, "<<", 3) == 0
+			&& g_term.cmd->red[i].red
+			&& ft_strncmp(g_term.cmd->red[i + 1].red, "<<", 3) == 0)
+			deb = g_term.cmd->red[i].file;
+		i++;
 	}
 	if (fin)
 		my_lancement_heredoc(deb, fin);

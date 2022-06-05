@@ -6,50 +6,50 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:22:31 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:55:44 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:42:38 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_check_gu(int *gu, char c)
+int	check_quote(int *quote, char c)
 {
-	int	x;
+	int	i;
 
-	x = *gu;
-	if (*gu == 0 && c == '\'')
-		*gu = 1;
-	else if (*gu == 0 && c == '\"')
-		*gu = 2;
-	else if (*gu == 1 && c == '\'')
-		*gu = 0;
-	else if (*gu == 2 && c == '\"')
-		*gu = 0;
-	if (x != *gu)
+	i = *quote;
+	if (*quote == 0 && c == '\'')
+		*quote = 1;
+	else if (*quote == 0 && c == '\"')
+		*quote = 2;
+	else if (*quote == 1 && c == '\'')
+		*quote = 0;
+	else if (*quote == 2 && c == '\"')
+		*quote = 0;
+	if (i != *quote)
 		return (-1);
 	return (1);
 }
 
-int	my_check_red(int gu, char c)
+int	check_redirect(int quote, char c)
 {
-	if (c == '>' && gu == 0)
+	if (c == '>' && quote == 0)
 		return (-1);
-	else if (c == '<' && gu == 0)
+	else if (c == '<' && quote == 0)
 		return (-2);
 	return (1);
 }
 
-int	my_sup_char(char **str, int x)
+int	sub_char(char **str, int i)
 {
 	char	*tmp;
 	char	*tmp_2;
 	char	c;
 
-	c = (*str)[x];
-	(*str)[x] = '\0';
+	c = (*str)[i];
+	(*str)[i] = '\0';
 	tmp = ft_strdup((*str));
-	(*str)[x] = c;
-	tmp_2 = ft_strjoin(tmp, &((*str)[x + 1]));
+	(*str)[i] = c;
+	tmp_2 = ft_strjoin(tmp, &((*str)[i + 1]));
 	*str = free_tab((void **)str);
 	*str = tmp_2;
 	return (1);

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_export.c                                  :+:      :+:    :+:   */
+/*   print_eiport.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,22 +15,22 @@
 t_env	*copy_env(void)
 {
 	t_env	*env;
-	int		x;
+	int		i;
 
-	x = 0;
-	while (g_term.my_env[x].key)
-		x++;
-	env = malloc(sizeof(t_env) * (x + 1));
+	i = 0;
+	while (g_term.ft_env[i].key)
+		i++;
+	env = malloc(sizeof(t_env) * (i + 1));
 	if (!env)
 		return (NULL);
-	x = 0;
-	while (g_term.my_env[x].key)
+	i = 0;
+	while (g_term.ft_env[i].key)
 	{
-		env[x].key = g_term.my_env[x].key;
-		env[x].var = g_term.my_env[x].var;
-		x++;
+		env[i].key = g_term.ft_env[i].key;
+		env[i].var = g_term.ft_env[i].var;
+		i++;
 	}
-	env[x].key = NULL;
+	env[i].key = NULL;
 	return (env);
 }
 
@@ -71,7 +71,7 @@ int	print_export(void)
 	i = -1;
 	while (tmp[++i].key)
 	{
-		printf("declare -x %s", tmp[i].key);
+		printf("declare -i %s", tmp[i].key);
 		if (tmp[i].var)
 			printf("\"%s\"", tmp[i].var);
 		else if (tmp[i].key[ft_strlen(tmp[i].key) - 1] == '=')

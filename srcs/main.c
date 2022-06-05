@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:25:20 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:00:08 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	free_all(int ret)
 	int	x;
 
 	x = 0;
-	while (g_term.my_env && g_term.my_env[x].key != NULL)
+	while (g_term.ft_env && g_term.ft_env[x].key != NULL)
 	{
-		g_term.my_env[x].key = free_tab((void **)&(g_term.my_env[x].key));
-		g_term.my_env[x].var = free_tab((void **)&(g_term.my_env[x].var));
+		g_term.ft_env[x].key = free_tab((void **)&(g_term.ft_env[x].key));
+		g_term.ft_env[x].var = free_tab((void **)&(g_term.ft_env[x].var));
 		x++;
 	}
 	rl_clear_history();
-	if (g_term.my_env)
-		g_term.my_env = free_tab((void **)&(g_term.my_env));
+	if (g_term.ft_env)
+		g_term.ft_env = free_tab((void **)&(g_term.ft_env));
 	return (ret);
 }
 
@@ -63,7 +63,7 @@ int	launch_setup(int ac, char **envp)
 	signal(SIGINT, handler_ctr_c);
 	signal(SIGQUIT, SIG_IGN);
 	g_term.envp = envp;
-	g_term.my_env = NULL;
+	g_term.ft_env = NULL;
 	if (init_struct_env() == -1)
 		return (-1);
 	return (1);

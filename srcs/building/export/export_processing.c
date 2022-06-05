@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_traitement_arg_export.c                         :+:      :+:    :+:   */
+/*   export_processing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 17:49:52 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:55:03 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 18:51:58 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strmicrojoin(char **str, char c)
 {
 	char	*res;
-	int		x;
+	int		i;
 	int		len;
 
 	if ((*str))
@@ -25,15 +25,15 @@ char	*ft_strmicrojoin(char **str, char c)
 	res = malloc(sizeof(char) * (len + 2));
 	if (!res)
 		return (NULL);
-	x = 0;
-	while (len > x)
+	i = 0;
+	while (len > i)
 	{
-		res[x] = (*str)[x];
-		x++;
+		res[i] = (*str)[i];
+		i++;
 	}
-	res[x] = c;
-	x += 1;
-	res[x] = '\0';
+	res[i] = c;
+	i += 1;
+	res[i] = '\0';
 	*str = free_tab((void **)str);
 	return (res);
 }
@@ -52,25 +52,25 @@ char	*str_2(char *arg)
 	return (new);
 }
 
-char	*str(char *arg, int i)
+char	*str(char *arg, int index)
 {
-	int		x;
+	int		i;
 	char	*new;
 
-	x = 0;
-	if (i == 0)
+	i = 0;
+	if (index == 0)
 	{
-		while (arg[x] && arg[x] != '=')
-			x++;
-		if (arg[x] == '=')
-			x++;
-		new = malloc(sizeof(char) * (x + 1));
+		while (arg[i] && arg[i] != '=')
+			i++;
+		if (arg[i] == '=')
+			i++;
+		new = malloc(sizeof(char) * (i + 1));
 		if (!new)
 			return (NULL);
-		x = -1;
-		while (arg[++x] && arg[x - 1] != '=')
-			new[x] = arg[x];
-		new[x] = '\0';
+		i = -1;
+		while (arg[++i] && arg[i - 1] != '=')
+			new[i] = arg[i];
+		new[i] = '\0';
 		return (new);
 	}
 	return (str_2(arg));

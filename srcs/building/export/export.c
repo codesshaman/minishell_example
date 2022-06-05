@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_export.c                                        :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:29:06 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 19:17:43 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 18:52:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	error_message(char *str)
 {
-	write(2, "minishell: export: '", 20);
+	write(2, "shell: export: '", 20);
 	write(2, str, ft_strlen(str));
 	write(2, "': not a valid identifier\n", 26);
 	return (1);

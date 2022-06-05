@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:01:20 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:31:58 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:45:25 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*free_tab(void **a_free)
 	return (NULL);
 }
 
-void	*my_free_double_tab(void **tab_str, int nb_str)
+void	*free_double_tab(void **tab_str, int nb_str)
 {
 	int	op;
 
@@ -48,10 +48,10 @@ void	*my_free_double_tab(void **tab_str, int nb_str)
 void	*listing(t_cmd *cmd)
 {
 	int			i;
-	int			x;
+	int			j;
 	t_cmd		*tmp;
 
-	x = 0;
+	j = 0;
 	i = 1;
 	g_term.str_cmd = free_tab((void **)&(g_term.str_cmd));
 	if (!cmd)
@@ -60,7 +60,7 @@ void	*listing(t_cmd *cmd)
 	while (i > 0)
 	{
 		tmp = cmd->next;
-		cmd = my_free_maillon(cmd);
+		cmd = free_node(cmd);
 		if (tmp == NULL)
 			break ;
 		i--;
@@ -71,32 +71,32 @@ void	*listing(t_cmd *cmd)
 	return (NULL);
 }
 
-void	*my_free_intra_red(t_intra_red **red)
+void	*free_intra_red(t_intra_red **red)
 {
-	int	x;
+	int	i;
 
-	x = -1;
-	while ((*red) && (*red)[++x].red)
+	i = -1;
+	while ((*red) && (*red)[++i].red)
 	{
-		(*red)[x].fichier = free_tab((void **)&((*red)[x].fichier));
-		(*red)[x].red = free_tab((void **)&((*red)[x].red));
+		(*red)[i].file = free_tab((void **)&((*red)[i].file));
+		(*red)[i].red = free_tab((void **)&((*red)[i].red));
 	}
 	*red = free_tab((void **)&((*red)));
 	return (NULL);
 }
 
-void	*my_free_maillon(t_cmd *tmp)
+void	*free_node(t_cmd *tmp)
 {
-	int	x;
+	int	i;
 
-	x = -1;
+	i = -1;
 	if (tmp == NULL)
 		return (NULL);
 	tmp->cmd = free_tab((void **)&(tmp->cmd));
 	tmp->path = free_tab((void **)&(tmp->path));
-	tmp->red = my_free_intra_red(&(tmp->red));
-	while (tmp->arg && tmp->arg[++x])
-		tmp->arg[x] = free_tab((void **)&(tmp->arg[x]));
+	tmp->red = free_intra_red(&(tmp->red));
+	while (tmp->arg && tmp->arg[++i])
+		tmp->arg[i] = free_tab((void **)&(tmp->arg[i]));
 	tmp->arg = free_tab((void **)&(tmp->arg));
 	tmp->pip = free_tab((void **)&(tmp->pip));
 	tmp = free_tab((void **)&tmp);

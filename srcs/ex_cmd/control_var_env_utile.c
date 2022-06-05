@@ -1,54 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_gu_and_var_env_utile.c                  :+:      :+:    :+:   */
+/*   control_var_env_utile.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:53:40 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:57:14 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:42:38 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*my_recup_key(char *str, int *x)
+char	*return_key(char *str, int *i)
 {
 	char	*res;
 
 	res = NULL;
-	(*x)++;
-	while (str[*x] == '_'
-		|| (str[*x] >= 'a' && str[*x] <= 'z')
-		|| (str[*x] >= 'A' && str[*x] <= 'Z')
-		|| (str[*x] >= '0' && str[*x] <= '9')
-		|| str[*x] >= '?')
+	(*i)++;
+	while (str[*i] == '_'
+		|| (str[*i] >= 'a' && str[*i] <= 'z')
+		|| (str[*i] >= 'A' && str[*i] <= 'Z')
+		|| (str[*i] >= '0' && str[*i] <= '9')
+		|| str[*i] >= '?')
 	{
-		res = ft_strmicrojoin(&res, str[*x]);
-		(*x)++;
+		res = ft_strmicrojoin(&res, str[*i]);
+		(*i)++;
 	}
 	res = ft_strmicrojoin(&res, '=');
 	return (res);
 }
 
-char	*my_recup_var_env(char *str, int x)
+char	*return_var_env(char *str, int i)
 {
 	char	*key;
 	char	*res;
 	int		y;
 
 	y = 0;
-	key = my_recup_key(str, &x);
+	key = return_key(str, &i);
 	if (key[0] == '?' && key[1] == '=' && key[2] == '\0')
 	{
 		return (ft_itoa(g_term.dernier_ret));
 	}
-	while (g_term.my_env && g_term.my_env[y].key)
+	while (g_term.ft_env && g_term.ft_env[y].key)
 	{
-		if (ft_strncmp(g_term.my_env[y].key, key
-				, ft_strlen(g_term.my_env[y].key)) == 0)
+		if (ft_strncmp(g_term.ft_env[y].key, key
+				, ft_strlen(g_term.ft_env[y].key)) == 0)
 		{
-			res = ft_strdup(g_term.my_env[y].var);
+			res = ft_strdup(g_term.ft_env[y].var);
 			key = free_tab((void **)&key);
 			return (res);
 		}
@@ -58,27 +58,27 @@ char	*my_recup_var_env(char *str, int x)
 	return (NULL);
 }
 
-int	my_change_cmd(char **str, char *var_env, int x)
+int	change_cmd(char **str, char *var_env, int i)
 {
 	char	*tmp;
 	char	*tmp_2;
 
-	(*str)[x] = '\0';
+	(*str)[i] = '\0';
 	tmp = ft_strdup(*str);
-	(*str)[x] = '$';
+	(*str)[i] = '$';
 	if (var_env)
 		tmp_2 = ft_strjoin(tmp, var_env);
 	else
 		tmp_2 = ft_strdup(tmp);
 	tmp = free_tab((void **)&tmp);
-	while ((*str)[x] && ((*str)[x] == '_' || (*str)[x] == '$'
-		|| ((*str)[x] >= 'a' && (*str)[x] <= 'z')
-		|| ((*str)[x] >= 'A' && (*str)[x] <= 'Z')
-		|| ((*str)[x] >= '0' && (*str)[x] <= '9')
-		|| (*str)[x] == '?'))
-		x++;
-	if ((*str)[x])
-		tmp = ft_strjoin(tmp_2, &((*str)[x]));
+	while ((*str)[i] && ((*str)[i] == '_' || (*str)[i] == '$'
+		|| ((*str)[i] >= 'a' && (*str)[i] <= 'z')
+		|| ((*str)[i] >= 'A' && (*str)[i] <= 'Z')
+		|| ((*str)[i] >= '0' && (*str)[i] <= '9')
+		|| (*str)[i] == '?'))
+		i++;
+	if ((*str)[i])
+		tmp = ft_strjoin(tmp_2, &((*str)[i]));
 	else
 		tmp = ft_strdup(tmp_2);
 	tmp_2 = free_tab((void **)&tmp_2);
@@ -87,22 +87,22 @@ int	my_change_cmd(char **str, char *var_env, int x)
 	return (1);
 }
 
-int	my_check_var_env(char **str)
+int	check_var_env(char **str)
 {
-	int		x;
-	int		gu;
+	int		i;
+	int		quotes;
 	char	*var_env;
 
-	gu = 0;
-	x = 0;
+	quotes = 0;
+	i = 0;
 	var_env = NULL;
-	while ((*str)[x])
+	while ((*str)[i])
 	{
-		my_check_gu(&gu, (*str)[x]);
-		if ((gu == 0 || gu == 2) && (*str)[x] == '$')
+		check_quote(&quotes, (*str)[i]);
+		if ((quotes == 0 || quotes == 2) && (*str)[i] == '$')
 		{
-			var_env = my_recup_var_env(*str, x);
-			my_change_cmd(str, var_env, x);
+			var_env = return_var_env(*str, i);
+			change_cmd(str, var_env, i);
 			var_env = free_tab((void **)&var_env);
 			if (!(*str)[0])
 			{
@@ -110,31 +110,31 @@ int	my_check_var_env(char **str)
 				return (-1);
 			}
 		}
-		x++;
+		i++;
 	}
 	return (1);
 }
 
-int	netoyage_guillemet(char **str)
+int	cleaning_quotes(char **str)
 {
-	int	x;
-	int	gu;
+	int	i;
+	int	quotes;
 
-	x = -1;
-	gu = 0;
+	i = -1;
+	quotes = 0;
 	if (!*str)
 		return (1);
-	while ((*str)[++x])
+	while ((*str)[++i])
 	{
-		my_check_gu(&gu, (*str)[x]);
-		if (gu == 2 && (*str)[x] == '\'')
+		check_quote(&quotes, (*str)[i]);
+		if (quotes == 2 && (*str)[i] == '\'')
 			continue ;
-		else if (gu == 1 && (*str)[x] == '\"')
+		else if (quotes == 1 && (*str)[i] == '\"')
 			continue ;
-		else if (((*str)[x] == '\"' || (*str)[x] == '\''))
+		else if (((*str)[i] == '\"' || (*str)[i] == '\''))
 		{
-			my_sup_char(str, x);
-			x--;
+			sub_char(str, i);
+			i--;
 		}
 	}
 	return (1);

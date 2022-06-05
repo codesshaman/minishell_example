@@ -6,62 +6,62 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:53:40 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:38:42 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:49:30 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_check_arg_var_env(char **tabe)
+int	check_arg_var_env(char **str)
 {
-	int	x;
+	int	i;
 
-	x = -1;
-	if (!tabe)
+	i = -1;
+	if (!str)
 		return (1);
-	while (tabe[++x])
+	while (str[++i])
 	{
-		my_check_var_env(&(tabe[x]));
-		netoyage_guillemet(&(tabe[x]));
+		check_var_env(&(str[i]));
+		cleaning_quotes(&(str[i]));
 	}
 	return (1);
 }
 
-int	my_check_red_var_env(t_intra_red *tabe)
+int	check_redirect_var_env(t_intra_red *str)
 {
-	int	x;
+	int	i;
 
-	x = -1;
-	if (!tabe)
+	i = -1;
+	if (!str)
 		return (1);
-	while (tabe[++x].red)
+	while (str[++i].red)
 	{
-		if (ft_strncmp(tabe[x].red, "<<", 3) == 0)
+		if (ft_strncmp(str[i].red, "<<", 3) == 0)
 			continue ;
-		my_check_var_env(&(tabe[x].red));
-		my_check_var_env(&(tabe[x].fichier));
-		netoyage_guillemet(&(tabe[x].red));
-		netoyage_guillemet(&(tabe[x].fichier));
+		check_var_env(&(str[i].red));
+		check_var_env(&(str[i].file));
+		cleaning_quotes(&(str[i].red));
+		cleaning_quotes(&(str[i].file));
 	}
 	return (1);
 }
 
-int	control_var_env_and_gui(t_cmd *cmd)
+int	control_var_env_quotes(t_cmd *cmd)
 {
 	if (cmd->cmd)
 	{
-		my_check_var_env(&cmd->cmd);
-		netoyage_guillemet(&cmd->cmd);
+		check_var_env(&cmd->cmd);
+		cleaning_quotes(&cmd->cmd);
 	}
 	if (!cmd->path)
 	{
 		cmd->path = free_tab((void **)&(cmd->path));
-		cmd->path = my_recup_path(&cmd->cmd);
-		netoyage_guillemet(&cmd->path);
+		cmd->path = recup_path(&cmd->cmd);
+		cleaning_quotes(&cmd->path);
 	}
 	if (cmd->arg)
-		my_check_arg_var_env(cmd->arg);
+		check_arg_var_env(cmd->arg);
 	if (cmd->red)
-		my_check_red_var_env(cmd->red);
+		check_redirect_var_env(cmd->red);
 	return (1);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_red.c                                   :+:      :+:    :+:   */
+/*   control_red.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:47:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:56:38 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:51:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_len_double_tab(t_intra_red *red)
+int	len_double_tab(t_intra_red *red)
 {
 	int	res;
 
@@ -25,44 +25,44 @@ int	my_len_double_tab(t_intra_red *red)
 	return (res);
 }
 
-t_intra_red	*my_realoc_red(t_intra_red **red, char *fichier, char *redi)
+t_intra_red	*realoc_red(t_intra_red **red, char *file, char *redi)
 {
 	int			len;
 	t_intra_red	*new;
 
-	len = my_len_double_tab(*red);
+	len = len_double_tab(*red);
 	new = malloc(sizeof(t_intra_red) * (len + 2));
 	if (!new)
 		return (NULL);
 	len = 0;
 	while ((*red) && (*red)[len].red)
 	{
-		new[len].fichier = (*red)[len].fichier;
+		new[len].file = (*red)[len].file;
 		new[len].red = (*red)[len].red;
 		len++;
 	}
-	new[len].fichier = ft_strdup(fichier);
+	new[len].file = ft_strdup(file);
 	new[len].red = ft_strdup(redi);
 	len++;
-	new[len].fichier = NULL;
+	new[len].file = NULL;
 	new[len].red = NULL;
 	free_tab((void **)red);
 	return (new);
 }
 
-int	my_recup_red_2(char **str, int *x, t_intra_red **red)
+int	recup_red_2(char **str, int *i, t_intra_red **red)
 {
 	char		*tmp;
 	char		*tmp_2;
 	int			type_red;
 
 	type_red = 0;
-	type_red = my_check_red_pip(&(*str)[*x]);
+	type_red = check_redirect_pip(&(*str)[*i]);
 	if (type_red < 5)
 		return (-1);
-	tmp = my_take_red(type_red, x, str);
-	tmp_2 = my_recup_ellement(str, x);
-	*red = my_realoc_red(red, tmp_2, tmp);
+	tmp = take_red(type_red, i, str);
+	tmp_2 = recup_ellement(str, i);
+	*red = realoc_red(red, tmp_2, tmp);
 	tmp = free_tab((void **) &tmp);
 	tmp_2 = free_tab((void **) &tmp_2);
 	return (1);
@@ -70,21 +70,21 @@ int	my_recup_red_2(char **str, int *x, t_intra_red **red)
 
 t_intra_red	*my_recup_red(char **str)
 {
-	int			x;
+	int			i;
 	t_intra_red	*red;
 	int			gu;
 
-	x = -1;
+	i = -1;
 	gu = 0;
 	red = NULL;
-	while ((*str)[++x])
+	while ((*str)[++i])
 	{
-		my_check_gu(&gu, (*str)[x]);
+		check_quote(&gu, (*str)[i]);
 		if (gu == 0)
 		{
-			if (my_recup_red_2(str, &x, &red) == -1)
+			if (recup_red_2(str, &i, &red) == -1)
 				continue ;
-			if (!(*str)[x])
+			if (!(*str)[i])
 				break ;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_heredoc_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 21:08:17 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/05 19:42:38 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	ft_strcmp(char *str1, char *str2)
 {
-	unsigned int	x;
+	unsigned int	i;
 
-	x = 0;
-	while ((str1[x]) || (str2[x]))
+	i = 0;
+	while ((str1[i]) || (str2[i]))
 	{
-		if ((unsigned char)str1[x] < (unsigned char)str2[x])
+		if ((unsigned char)str1[i] < (unsigned char)str2[i])
 			return (-1);
-		else if ((unsigned char)str1[x] > (unsigned char)str2[x])
+		else if ((unsigned char)str1[i] > (unsigned char)str2[i])
 			return (1);
-		x++;
+		i++;
 	}
 	return (0);
 }
@@ -34,7 +34,7 @@ int	ft_sort(char **str, char **res, int option, int *tub)
 	dup2(tub[ENTRE], 1);
 	close(tub[ENTRE]);
 	if (option == 0)
-		my_check_var_env(res);
+		check_var_env(res);
 	write(1, (*res), ft_strlen((*res)));
 	*str = free_tab((void **)str);
 	*res = free_tab((void **)res);
@@ -62,21 +62,21 @@ int	ft_join(char **res, char *str)
 
 int	clearing_quotes(char **str)
 {
-	int	x;
+	int	i;
 
-	x = 0;
+	i = 0;
 	if (!*str)
 		return (0);
 	if ((*str)[0] == '\"' && (*str)[1] == '\0')
 		return (2);
 	if ((*str)[0] == '\'' && (*str)[1] == '\0')
 		return (2);
-	while ((*str)[x])
+	while ((*str)[i])
 	{
-		if ((*str)[x] == '\"' || (*str)[x] == '\'')
-			my_sup_char(str, x);
+		if ((*str)[i] == '\"' || (*str)[i] == '\'')
+			sub_char(str, i);
 		else
-			x++;
+			i++;
 	}
 	return (0);
 }

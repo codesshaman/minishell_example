@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_cmd.c                                   :+:      :+:    :+:   */
+/*   control_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:50:53 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:56:42 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:51:30 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*my_recup_cmd(char **str)
+char	*recup_cmd(char **str)
 {
 	char	*res;
-	int		x;
+	int		i;
 
-	x = -1;
+	i = -1;
 	res = NULL;
-	while ((*str)[++x])
+	while ((*str)[++i])
 	{
-		if (ft_whitespace((*str)[x]) == 1)
+		if (ft_whitespace((*str)[i]) == 1)
 			continue ;
-		res = my_recup_ellement(str, &x);
+		res = recup_ellement(str, &i);
 		break ;
 	}
 	return (res);
 }
 
-char	*my_recup_path(char **str)
+char	*recup_path(char **str)
 {
 	char	*res;
 	char	*tmp;
@@ -54,42 +54,42 @@ char	*my_recup_path(char **str)
 	return (res);
 }
 
-char	**my_recup_path_env_2(void)
+char	**recup_path_env_2(void)
 {
 	char	**path;
-	int		x;
+	int		i;
 
-	x = 0;
-	if (!g_term.my_env)
+	i = 0;
+	if (!g_term.ft_env)
 		return (NULL);
-	while (g_term.my_env[x].key)
+	while (g_term.ft_env[i].key)
 	{
-		if (ft_strncmp(g_term.my_env[x].key,
-				"PATH=", ft_strlen(g_term.my_env[x].key)) == 0)
+		if (ft_strncmp(g_term.ft_env[i].key,
+				"PATH=", ft_strlen(g_term.ft_env[i].key)) == 0)
 		{
-			path = ft_split(g_term.my_env[x].var, ':');
+			path = ft_split(g_term.ft_env[i].var, ':');
 			break ;
 		}
-		x++;
+		i++;
 	}
-	if (!g_term.my_env[x].key)
+	if (!g_term.ft_env[i].key)
 		return (NULL);
 	return (path);
 }
 
-char	*my_recup_path_env(char *cmd)
+char	*recup_path_env(char *cmd)
 {
 	char	**path;
 	char	*tmp_2;
 	char	*tmp;
-	int		x;
+	int		i;
 
 	tmp = NULL;
-	path = my_recup_path_env_2();
-	x = -1;
-	while (cmd && path && path[++x])
+	path = recup_path_env_2();
+	i = -1;
+	while (cmd && path && path[++i])
 	{
-		tmp = ft_strjoin(path[x], "/");
+		tmp = ft_strjoin(path[i], "/");
 		tmp_2 = ft_strjoin(tmp, cmd);
 		if (access(tmp_2, F_OK) == 0)
 		{
@@ -99,6 +99,6 @@ char	*my_recup_path_env(char *cmd)
 		tmp = free_tab((void **)&tmp);
 		tmp_2 = free_tab((void **)&tmp_2);
 	}
-	path = my_free_double_tab((void **)path, -1);
+	path = free_double_tab((void **)path, -1);
 	return (tmp);
 }

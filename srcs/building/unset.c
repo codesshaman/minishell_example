@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 18:37:39 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 21:02:30 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/05 19:00:08 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ int	supp_var_2(char *argv, t_env **new, int j, int len)
 	int		len_2;
 	char	*tmp;
 
-	len_2 = ft_strlen(g_term.my_env[len].key) - 1;
-	if (g_term.my_env[len].key[len_2] == '=')
+	len_2 = ft_strlen(g_term.ft_env[len].key) - 1;
+	if (g_term.ft_env[len].key[len_2] == '=')
 	{
-		g_term.my_env[len].key[len_2] = '\0';
-		tmp = ft_strdup(g_term.my_env[len].key);
-		g_term.my_env[len].key[len_2] = '=';
+		g_term.ft_env[len].key[len_2] = '\0';
+		tmp = ft_strdup(g_term.ft_env[len].key);
+		g_term.ft_env[len].key[len_2] = '=';
 	}
 	else
-		tmp = ft_strdup(g_term.my_env[len].key);
+		tmp = ft_strdup(g_term.ft_env[len].key);
 	if (ft_strncmp(tmp, argv, ft_strlen(tmp)) == 0)
 	{
 		free(tmp);
-		free(g_term.my_env[len].key);
-		if (g_term.my_env[len].var)
-			free(g_term.my_env[len].var);
+		free(g_term.ft_env[len].key);
+		if (g_term.ft_env[len].var)
+			free(g_term.ft_env[len].var);
 		return (1);
 	}
 	free(tmp);
-	(*new)[j].key = g_term.my_env[len].key;
-	(*new)[j].var = g_term.my_env[len].var;
+	(*new)[j].key = g_term.ft_env[len].key;
+	(*new)[j].var = g_term.ft_env[len].var;
 	return (0);
 }
 
@@ -47,14 +47,14 @@ void	supp_var(char *argv)
 	int		j;
 
 	len = 0;
-	while (g_term.my_env[len].key)
+	while (g_term.ft_env[len].key)
 		len++;
 	new = malloc(sizeof(t_env) * (len + 1));
 	if (!new)
 		return ;
 	j = 0;
 	len = -1;
-	while (g_term.my_env[++len].key != NULL)
+	while (g_term.ft_env[++len].key != NULL)
 	{
 		if (supp_var_2(argv, &new, j, len) == 1)
 			continue ;
@@ -62,8 +62,8 @@ void	supp_var(char *argv)
 	}
 	new[j].key = NULL;
 	new[j].var = NULL;
-	free(g_term.my_env);
-	g_term.my_env = new;
+	free(g_term.ft_env);
+	g_term.ft_env = new;
 	return ;
 }
 

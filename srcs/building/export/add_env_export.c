@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:48:53 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 19:25:23 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:00:08 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,48 @@
 
 int	ft_strncmp_2(char *str1, char *str2, unsigned int size)
 {
-	unsigned int	x;
+	unsigned int	i;
 
-	x = 0;
-	while (x < size && ((str1[x]) || (str2[x])))
+	i = 0;
+	while (i < size && ((str1[i]) || (str2[i])))
 	{
-		if (str1[x] == '=' && (str2[x] == '=' || !str2[x]))
+		if (str1[i] == '=' && (str2[i] == '=' || !str2[i]))
 			return (0);
-		if (str2[x] == '=' && (str1[x] == '=' || !str1[x]))
+		if (str2[i] == '=' && (str1[i] == '=' || !str1[i]))
 			return (0);
-		else if ((unsigned char)str1[x] < (unsigned char)str2[x])
+		else if ((unsigned char)str1[i] < (unsigned char)str2[i])
 			return (-1);
-		else if ((unsigned char)str1[x] > (unsigned char)str2[x])
+		else if ((unsigned char)str1[i] > (unsigned char)str2[i])
 			return (1);
-		x++;
+		i++;
 	}
 	return (0);
 }
 
-int	check_duplication_key(char *key, int i)
+int	check_duplication_key(char *key, int index)
 {
-	int		x;
+	int		i;
 
-	x = 0;
-	if (i == 1)
+	i = 0;
+	if (index == 1)
 	{
-		while (g_term.my_env[x].key)
+		while (g_term.ft_env[i].key)
 		{
-			if (ft_strncmp_2(g_term.my_env[x].key, key, 1000) == 0)
-				return (x);
-			x++;
+			if (ft_strncmp_2(g_term.ft_env[i].key, key, 1000) == 0)
+				return (i);
+			i++;
 		}
 		return (-1);
 	}
-	if (!ft_isalpha(key[x]) && key[x] != '_')
+	if (!ft_isalpha(key[i]) && key[i] != '_')
 		return (error_message(key));
-	x++;
-	while (key[x])
+	i++;
+	while (key[i])
 	{
-		if (!ft_isalpha(key[x]) && key[x] != '_'
-			&& !ft_isdigit(key[x]) && key[x] != '=')
+		if (!ft_isalpha(key[i]) && key[i] != '_'
+			&& !ft_isdigit(key[i]) && key[i] != '=')
 			return (error_message(key));
-		x++;
+		i++;
 	}
 	return (0);
 }
@@ -66,16 +66,16 @@ int	add_new_env(char **key, char **var)
 	t_env	*new;
 
 	len = 0;
-	while (g_term.my_env[len].key)
+	while (g_term.ft_env[len].key)
 		len++;
 	new = malloc(sizeof(t_env) * (len + 2));
 	if (!new)
 		return (-1);
 	len = 0;
-	while (g_term.my_env[len].key)
+	while (g_term.ft_env[len].key)
 	{
-		new[len].key = g_term.my_env[len].key;
-		new[len].var = g_term.my_env[len].var;
+		new[len].key = g_term.ft_env[len].key;
+		new[len].var = g_term.ft_env[len].var;
 		len++;
 	}
 	new[len].key = *key;
@@ -83,12 +83,12 @@ int	add_new_env(char **key, char **var)
 	len++;
 	new[len].key = NULL;
 	new[len].var = NULL;
-	free(g_term.my_env);
-	g_term.my_env = new;
+	free(g_term.ft_env);
+	g_term.ft_env = new;
 	return (1);
 }
 
-int	added_arg_ex(char **key, char **var)
+int	added_arg_ei(char **key, char **var)
 {
 	int	check;
 
@@ -97,9 +97,9 @@ int	added_arg_ex(char **key, char **var)
 	{
 		if ((*key)[ft_strlen(*key) - 1] != '=')
 			return (1);
-		free(g_term.my_env[check].var);
-		g_term.my_env[check].key = *key;
-		g_term.my_env[check].var = *var;
+		free(g_term.ft_env[check].var);
+		g_term.ft_env[check].key = *key;
+		g_term.ft_env[check].var = *var;
 	}
 	if (check_duplication_key(*key, 1) == -1)
 	{
@@ -118,17 +118,17 @@ int	added_arg(char **arg)
 	int		y;
 	char	*key;
 	char	*var;
-	int		x;
+	int		i;
 
 	y = -1;
-	x = -1;
+	i = -1;
 	while (arg[++y])
 	{
 		key = str(arg[y], 0);
 		if (!key || check_duplication_key(key, 0) == -1)
 			return (-1);
 		var = str(arg[y], 1);
-		if (added_arg_ex(&key, &var) == -1)
+		if (added_arg_ei(&key, &var) == -1)
 			return (-1);
 	}
 	return (1);

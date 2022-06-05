@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 21:08:17 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/05 20:51:42 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 typedef struct s_intra_red
 {
-	char				*fichier;
+	char				*file;
 	char				*red;
 }	t_intra_red;
 
@@ -63,7 +63,7 @@ typedef struct s_term
 	char	**envp;
 	char	*str_cmd;
 	t_cmd	*cmd;
-	t_env	*my_env;
+	t_env	*ft_env;
 	int		dernier_ret;
 }	t_term;
 
@@ -101,7 +101,7 @@ int			check_building(t_cmd *cmd);
 int			option(char *str);
 int			ft_echo(char **argv);
 int			ft_pwd(t_cmd *cmd);
-int			my_env(t_cmd *cmd);
+int			ft_env(t_cmd *cmd);
 
 int			ex_exit(int nbr, int err, char *str);
 int			verif_arg(char *str);
@@ -115,9 +115,9 @@ int			ft_unset(char **argv);
 
 
 void		*free_tab(void **a_free);
-void		*my_free_double_tab(void **tab_str, int nb_str);
+void		*free_double_tab(void **tab_str, int nb_str);
 void		*listing(t_cmd *cmd);
-void		*my_free_maillon(t_cmd *tmp);
+void		*free_node(t_cmd *tmp);
 int			free_all(int ret);
 
 int			my_sup_maillon(void);
@@ -143,35 +143,35 @@ int			init_parsing(void);
 int			my_check_nb_guillemet(char *str);
 int			my_check_bad_red(char *str);
 
-int			my_check_gu(int *gu, char c);
-int			my_check_red(int gu, char c);
-int			my_sup_char(char **str, int x);
+int			check_quote(int *gu, char c);
+int			check_redirect(int gu, char c);
+int			sub_char(char **str, int x);
 
 char		**my_init_tab_cmd(char *str);
 
 int			my_create_cmd(char **tab_cmd);
 
-int			my_check_red_pip(char *str);
-char		*my_recup_ellement(char **str, int *x);
-char		*my_take_red(int choose, int *x, char **str);
+int			check_redirect_pip(char *str);
+char		*recup_ellement(char **str, int *x);
+char		*take_red(int choose, int *x, char **str);
 
 t_intra_red	*my_recup_red(char **str);
 
-char		*my_recup_cmd(char **str);
-char		*my_recup_path(char **str);
-char		*my_recup_path_env(char *cmd);
-char		*my_recup_pip(char **cmd);
+char		*recup_cmd(char **str);
+char		*recup_path(char **str);
+char		*recup_path_env(char *cmd);
+char		*recup_pipe(char **cmd);
 
-char		**my_recup_arg(char **tab_cmd, t_cmd *cmd);
-void		my_close_pip(t_cmd *cmd);
+char		**recup_arg(char **tab_cmd, t_cmd *cmd);
+void		ft_close_pipe(t_cmd *cmd);
 
 int			launch(void);
 
 
-int			control_var_env_and_gui(t_cmd *cmd);
+int			control_var_env_quotes(t_cmd *cmd);
 
-int			netoyage_guillemet(char **str);
-int			my_check_var_env(char **str);
+int			cleaning_quotes(char **str);
+int			check_var_env(char **str);
 
 void		connect_pipe(void);
 void		close_pipe(void);

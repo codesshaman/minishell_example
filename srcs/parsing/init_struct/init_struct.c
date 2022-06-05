@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_init_struct.c                                   :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 11:40:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/01 15:26:07 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:49:30 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_cmd	*my_init_maillon(char *tab_cmd)
 		return (NULL);
 	bzero(tmp, sizeof(t_cmd));
 	tmp->red = my_recup_red(&tab_cmd);
-	tmp->cmd = my_recup_cmd(&tab_cmd);
-	tmp->path = my_recup_path(&tmp->cmd);
+	tmp->cmd = recup_cmd(&tab_cmd);
+	tmp->path = recup_path(&tmp->cmd);
 	if (!tmp->path)
-		tmp->path = my_recup_path_env(tmp->cmd);
-	tmp->pip = my_recup_pip(&tab_cmd);
-	tmp->arg = my_recup_arg(&tab_cmd, tmp);
+		tmp->path = recup_path_env(tmp->cmd);
+	tmp->pip = recup_pipe(&tab_cmd);
+	tmp->arg = recup_arg(&tab_cmd, tmp);
 	return (tmp);
 }
 

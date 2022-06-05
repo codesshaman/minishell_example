@@ -70,18 +70,18 @@ int	init_struct_env(void)
 	i = 0;
 	while (g_term.envp[j])
 		j++;
-	g_term.my_env = malloc(sizeof(t_env) * (j + 1));
-	if (!g_term.my_env)
+	g_term.ft_env = malloc(sizeof(t_env) * (j + 1));
+	if (!g_term.ft_env)
 		return (-1);
 	while (i < j)
 	{
-		g_term.my_env[i].key = env_key(g_term.envp[i]);
-		g_term.my_env[i].var = env_var(g_term.envp[i]);
-		if (!g_term.my_env[i].var || !g_term.my_env[i].key)
+		g_term.ft_env[i].key = env_key(g_term.envp[i]);
+		g_term.ft_env[i].var = env_var(g_term.envp[i]);
+		if (!g_term.ft_env[i].var || !g_term.ft_env[i].key)
 			return (-1);
 		i++;
 	}
-	g_term.my_env[i].key = NULL;
-	g_term.my_env[i].var = NULL;
+	g_term.ft_env[i].key = NULL;
+	g_term.ft_env[i].var = NULL;
 	return (1);
 }

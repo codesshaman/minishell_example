@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_check_str_cmd.c                                 :+:      :+:    :+:   */
+/*   check_str_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:17:25 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/03 09:16:38 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:39:22 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	my_check_bad_red(char *str)
 	tem = 0;
 	while (str[x])
 	{
-		my_check_gu(&gu, str[x]);
-		if (my_check_red(gu, str[x]) < 0)
+		check_quote(&gu, str[x]);
+		if (check_redirect(gu, str[x]) < 0)
 			tem++;
 		else
 			tem = 0;

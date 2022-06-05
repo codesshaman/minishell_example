@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 08:27:33 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:50:25 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ int	control_logic_operation(int	*verif, int	*verif_2)
 void	creat_fork(void)
 {
 	t_cmd	*tmp;
-	int		x;
+	int		i;
 	int		verif;
 	int		verif_2;
 
-	x = 0;
+	i = 0;
 	verif = 0;
 	verif_2 = -1;
 	tmp = g_term.cmd;
-	while (x++ < g_term.nb_maillon)
+	while (i++ < g_term.nb_maillon)
 	{
 		g_term.cmd->pid = -1;
 		control_logic_operation(&verif, &verif_2);
@@ -70,13 +70,13 @@ void	creat_fork(void)
 void	waiting_loop(void)
 {
 	t_cmd	*tmp;
-	int		x;
+	int		i;
 
-	x = 0;
+	i = 0;
 	tmp = g_term.cmd;
 	if (g_term.cmd->pid != 0)
 	{
-		while (x++ < g_term.nb_maillon)
+		while (i++ < g_term.nb_maillon)
 		{
 			waitpid(g_term.cmd->pid, &g_term.dernier_ret, 0);
 			if (WIFEXITED(g_term.dernier_ret))
@@ -92,7 +92,7 @@ int	launch_ex_2(void)
 {
 	creat_pipe();
 	creat_fork();
-	control_var_env_and_gui(g_term.cmd);
+	control_var_env_quotes(g_term.cmd);
 	if (g_term.cmd->pid == 0)
 	{
 		connect_pipe();

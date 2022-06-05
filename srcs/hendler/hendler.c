@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hendler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/18 14:37:26 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:46:20 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	handler_ctr_c(int code)
 {
-	int	x;
+	int	i;
 
-	x = 0;
+	i = 0;
 	(void)code;
 	printf("\n");
 	rl_replace_line("", 0);
@@ -26,15 +26,15 @@ void	handler_ctr_c(int code)
 
 void	handler_ctr_c_2(int code)
 {
-	int	x;
+	int	i;
 
 	(void)code;
-	x = 0;
+	i = 0;
 	printf("\n");
 }
 
 void	handler_ctr_backslash(int code)
 {
 	(void)code;
-	printf(ROUGE"Quitter (core dumped)\n"BLANC);
+	printf(ROUGE"Fault (Core dumped)\n"BLANC);
 }

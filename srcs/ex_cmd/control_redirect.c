@@ -6,52 +6,52 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:35:30 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:36:31 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/05 19:17:08 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	overwrite_file(char *fichier)
+int	overwrite_file(char *file)
 {
 	int		fd;
 
-	fd = open(fichier, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd != -1)
 	{
 		close(fd);
-		if (remove(fichier) != 0)
+		if (remove(file) != 0)
 			return (-1);
 	}
-	fd = open(fichier, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		fd = open(fichier, O_CREAT);
+		fd = open(file, O_CREAT);
 	else
 		close(fd);
 	return (1);
 }
 
-int	my_recup_fd(char *fichier, int x)
+int	return_fd(char *file, int i)
 {
 	int		fd;
 	char	c;
 
 	fd = -1;
-	if (ft_strncmp(g_term.cmd->red[x].red, ">", 3) == 0)
-		overwrite_file(fichier);
-	fd = open(fichier, O_RDWR);
-	if (fd == -1 && ft_strncmp(g_term.cmd->red[x].red, "<", 3) != 0)
+	if (ft_strncmp(g_term.cmd->red[i].red, ">", 3) == 0)
+		overwrite_file(file);
+	fd = open(file, O_RDWR);
+	if (fd == -1 && ft_strncmp(g_term.cmd->red[i].red, "<", 3) != 0)
 	{
 		close(fd);
-		fd = open(fichier, O_CREAT);
+		fd = open(file, O_CREAT);
 		if (fd == -1)
 			return (-1);
 	}
 	close(fd);
-	fd = open(fichier, O_RDWR);
+	fd = open(file, O_RDWR);
 	if (fd == -1)
 		return (-1);
-	if (ft_strncmp(g_term.cmd->red[x].red, ">>", 3) == 0)
+	if (ft_strncmp(g_term.cmd->red[i].red, ">>", 3) == 0)
 		while (read(fd, &c, 1) > 0)
 			c = 'a';
 	return (fd);
@@ -59,20 +59,20 @@ int	my_recup_fd(char *fichier, int x)
 
 int	connect_redirect(void)
 {
-	int		x;
+	int		i;
 	int		fd;
 
-	x = -1;
+	i = -1;
 	fd = 0;
-	while (g_term.cmd->red && g_term.cmd->red[++x].red)
+	while (g_term.cmd->red && g_term.cmd->red[++i].red)
 	{
-		if (ft_strncmp(g_term.cmd->red[x].red, "<<", 3) == 0)
+		if (ft_strncmp(g_term.cmd->red[i].red, "<<", 3) == 0)
 			continue ;
-		fd = my_recup_fd(g_term.cmd->red[x].fichier, x);
-		if (ft_strncmp(g_term.cmd->red[x].red, ">", 3) == 0
-			|| ft_strncmp(g_term.cmd->red[x].red, ">>", 3) == 0)
+		fd = return_fd(g_term.cmd->red[i].file, i);
+		if (ft_strncmp(g_term.cmd->red[i].red, ">", 3) == 0
+			|| ft_strncmp(g_term.cmd->red[i].red, ">>", 3) == 0)
 			dup2(fd, 1);
-		else if (ft_strncmp(g_term.cmd->red[x].red, "<", 3) == 0)
+		else if (ft_strncmp(g_term.cmd->red[i].red, "<", 3) == 0)
 		{
 			if (fd == -1)
 				printf(ROUGE"No such file or directory\n"BLANC);

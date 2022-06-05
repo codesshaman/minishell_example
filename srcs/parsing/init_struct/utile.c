@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utile.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 11:47:47 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/02/02 16:06:02 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/05 20:51:42 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_check_red_pip(char *str)
+int	check_redirect_pip(char *str)
 {
 	if (str[0] == '&' && str[1] == '&')
 		return (3);
@@ -33,7 +33,7 @@ int	my_check_red_pip(char *str)
 	return (0);
 }
 
-char	*my_take_red(int choose, int *x, char **str)
+char	*take_red(int choose, int *x, char **str)
 {
 	if (choose > 2 && choose < 7)
 	{
@@ -61,7 +61,7 @@ char	*my_take_red(int choose, int *x, char **str)
 	return (0);
 }
 
-char	*my_recup_ellement(char **str, int *x)
+char	*recup_ellement(char **str, int *x)
 {
 	char	*new;
 	int		gu;
@@ -74,9 +74,9 @@ char	*my_recup_ellement(char **str, int *x)
 		(*x)++;
 	while ((*str)[*x + i])
 	{
-		my_check_gu(&gu, (*str)[*x + i]);
+		check_quote(&gu, (*str)[*x + i]);
 		if (!(*str)[*x + i] || (gu == 0 && (ft_whitespace((*str)[*x + i]) == 1
-			|| my_check_red_pip(&(*str)[*x + i]) > 0)))
+			|| check_redirect_pip(&(*str)[*x + i]) > 0)))
 			return (new);
 		else
 		{
