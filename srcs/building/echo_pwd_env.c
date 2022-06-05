@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_echo_pwd_env.c                                  :+:      :+:    :+:   */
+/*   echo_pwd_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:32:47 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/27 15:35:43 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:00:11 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	option(char *str)
 	return (0);
 }
 
-int	my_echo(char **argv)
+int	ft_echo(char **argv)
 {
 	int	i;
 	int	flag;
@@ -61,7 +61,7 @@ int	my_echo(char **argv)
 		return (0);
 }
 
-int	my_pwd(t_cmd *cmd)
+int	ft_pwd(t_cmd *cmd)
 {
 	char	*pwd;
 

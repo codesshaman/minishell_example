@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_gestion_heredoc_2.c                             :+:      :+:    :+:   */
+/*   control_heredoc_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/02 18:57:23 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:08:17 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strcmp(char *str1, char *str2)
 	return (0);
 }
 
-int	my_sorti(char **str, char **res, int option, int *tub)
+int	ft_sort(char **str, char **res, int option, int *tub)
 {
 	close(tub[SORTI]);
 	dup2(tub[ENTRE], 1);
@@ -42,7 +42,7 @@ int	my_sorti(char **str, char **res, int option, int *tub)
 	return (1);
 }
 
-int	my_concate(char **res, char *str)
+int	ft_join(char **res, char *str)
 {
 	char	*tmp;
 
@@ -60,7 +60,7 @@ int	my_concate(char **res, char *str)
 	return (1);
 }
 
-int	netoyage_guillemet_2(char **str)
+int	clearing_quotes(char **str)
 {
 	int	x;
 
@@ -81,7 +81,7 @@ int	netoyage_guillemet_2(char **str)
 	return (0);
 }
 
-int	my_heredoc(char *deb, char *fin, int option, int *tub)
+int	ft_heredoc(char *deb, char *fin, int option, int *tub)
 {
 	char	*str;
 	char	*res;
@@ -92,17 +92,17 @@ int	my_heredoc(char *deb, char *fin, int option, int *tub)
 	res = NULL;
 	tmp = NULL;
 	(void)option;
-	verif = netoyage_guillemet_2(&fin);
-	verif += netoyage_guillemet_2(&deb);
+	verif = clearing_quotes(&fin);
+	verif += clearing_quotes(&deb);
 	while (1)
 	{
 		str = readline(VERT"Heredoc>"BLANC);
 		if (deb == NULL && ft_strcmp(fin, str) == 0 && verif == 0)
-			my_sorti(&str, &res, option, tub);
+			ft_sort(&str, &res, option, tub);
 		else if (deb == NULL && ft_strcmp(fin, str) == 0 && verif != 0)
-			my_sorti_2(&str, &res, option, tub);
+			ft_sort_2(&str, &res, option, tub);
 		else if (deb == NULL && str)
-			my_concate(&res, str);
+			ft_join(&res, str);
 		else if (deb != NULL && ft_strcmp(deb, str) == 0)
 			deb = NULL;
 		str = free_tab((void **)&str);

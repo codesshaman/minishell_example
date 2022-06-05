@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   control_ex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:52:12 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:03:24 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_ex_building(t_cmd *cmd)
+int	ex_building(t_cmd *cmd)
 {
 	char	*cpe;
 	int		c;
@@ -20,19 +20,19 @@ int	my_ex_building(t_cmd *cmd)
 	c = 0;
 	cpe = cmd->cmd;
 	if (ft_strncmp(cpe, "cd", 10) == 0)
-		c = my_cd(g_term.cmd->arg);
+		c = ft_cd(g_term.cmd->arg);
 	else if (ft_strncmp(cpe, "pwd", 10) == 0)
-		c = my_pwd(cmd);
+		c = ft_pwd(cmd);
 	else if (ft_strncmp(cpe, "echo", 10) == 0)
-		c = my_echo(cmd->arg);
+		c = ft_echo(cmd->arg);
 	else if (ft_strncmp(cpe, "export", 10) == 0)
 		c = ft_export(cmd->arg);
 	else if (ft_strncmp(cpe, "unset", 10) == 0)
-		c = my_unset(cmd->arg);
+		c = ft_unset(cmd->arg);
 	else if (ft_strncmp(cpe, "env", 5) == 0)
 		c = my_env(cmd);
 	else if (ft_strncmp(cpe, "exit", 5) == 0)
-		my_exit(cmd->arg);
+		ft_exit(cmd->arg);
 	else
 		return (-1);
 	if (c == -1)
@@ -40,7 +40,7 @@ int	my_ex_building(t_cmd *cmd)
 	return (0);
 }
 
-int	my_exe(t_cmd *cmd)
+int	ft_exe(t_cmd *cmd)
 {
 	char	*cpe;
 	int		ret;
@@ -83,9 +83,9 @@ void	exec_cmd_2(void)
 		if (g_term.cmd->pid == 0)
 		{
 			if (check_building(g_term.cmd) == 1)
-				g_term.dernier_ret = my_ex_building(g_term.cmd);
+				g_term.dernier_ret = ex_building(g_term.cmd);
 			else
-				g_term.dernier_ret = my_exe(g_term.cmd);
+				g_term.dernier_ret = ft_exe(g_term.cmd);
 		}
 	}
 }
@@ -103,7 +103,7 @@ int	exec_cmd(void)
 				&& g_term.cmd->pip[0] == ';'
 				&& !g_term.cmd->red)
 			{
-				g_term.dernier_ret = my_ex_building(g_term.cmd);
+				g_term.dernier_ret = ex_building(g_term.cmd);
 				if (g_term.dernier_ret != 0)
 					dprintf(2, ROUGE"Minishell: aucun fichier\n"BLANC);
 			}

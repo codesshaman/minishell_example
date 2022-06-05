@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_unset.c                                         :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 18:37:39 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/28 16:11:21 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:02:30 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	supp_var(char *argv)
 
 int	mess_err(char *str)
 {
-	write(2, "minishell: unset: '", 19);
+	write(2, "shell: unset: '", 19);
 	write(2, str, ft_strlen(str));
 	write(2, "': not a valid identifier\n", 26);
 	return (1);
@@ -92,7 +92,7 @@ int	check(char *str)
 	return (0);
 }
 
-int	my_unset(char **argv)
+int	ft_unset(char **argv)
 {
 	int	i;
 

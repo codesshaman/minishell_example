@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:41:10 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:08:17 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			added_arg(char **arg);
 int			error_message(char *str);
 int			ft_export(char **argv);
 
-t_env		*copy_t_env(void);
+t_env		*copy_env(void);
 int			sort(t_env **tmp);
 
 int			print_export(void);
@@ -94,24 +94,24 @@ int			init_struct_env(void);
 
 int			change_pwd(char *pwd, char *oldpwd);
 int			op(char **argv);
-int			my_cd(char **argv);
+int			ft_cd(char **argv);
 
 int			check_building(t_cmd *cmd);
 
 int			option(char *str);
-int			my_echo(char **argv);
-int			my_pwd(t_cmd *cmd);
+int			ft_echo(char **argv);
+int			ft_pwd(t_cmd *cmd);
 int			my_env(t_cmd *cmd);
 
 int			ex_exit(int nbr, int err, char *str);
 int			verif_arg(char *str);
 long long	ft_atoll(char *str);
-void		my_exit(char **argv);
+void		ft_exit(char **argv);
 
 void		supp_var(char *argv);
 int			mess_err(char *str);
 int			check(char *str);
-int			my_unset(char **argv);
+int			ft_unset(char **argv);
 
 
 void		*free_tab(void **a_free);
@@ -180,13 +180,13 @@ void		creat_pipe(void);
 int			connect_redirect(void);
 
 int			connect_heredoc(void);
-int			my_sorti_2(char **str, char **res, int option, int *tub);
+int			ft_sort_2(char **str, char **res, int option, int *tub);
 
 int			ft_strcmp(char *str1, char *str2);
-int			my_sorti(char **str, char **res, int option, int *tub);
-int			my_concate(char **res, char *str);
-int			netoyage_guillemet_2(char **str);
-int			my_heredoc(char *deb, char *fin, int option, int *tub);
+int			ft_sort(char **str, char **res, int option, int *tub);
+int			ft_join(char **res, char *str);
+int			clearing_quotes(char **str);
+int			ft_heredoc(char *deb, char *fin, int option, int *tub);
 
 int			exec_cmd(void);
 #endif

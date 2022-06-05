@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-t_env	*copy_t_env(void)
+t_env	*copy_env(void)
 {
 	t_env	*env;
 	int		x;
@@ -64,7 +64,7 @@ int	print_export(void)
 	t_env	*tmp;
 
 	i = -1;
-	tmp = copy_t_env();
+	tmp = copy_env();
 	if (!tmp)
 		return (-1);
 	sort(&tmp);

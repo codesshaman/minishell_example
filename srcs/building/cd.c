@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_cd.c                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 11:55:10 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/01/18 12:00:02 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:58:32 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	change_pwd(char *pwd, char *oldpwd)
 	return (0);
 }
 
-int	op(char **argv)
+int	ft_op(char **argv)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ int	op(char **argv)
 	}
 	if (chdir(argv[1]) == -1)
 	{
-		write(2, "minishell: cd: ", ft_strlen("minishell: cd: "));
+		write(2, "shell: cd: ", ft_strlen("shell: cd: "));
 		write(2, argv[1], ft_strlen(argv[1]));
 		write(2, ": ", 2);
 		perror("");
@@ -65,7 +65,7 @@ int	op(char **argv)
 	return (0);
 }
 
-int	my_cd(char **argv)
+int	ft_cd(char **argv)
 {
 	char	*pwd;
 	char	*oldpwd;
@@ -86,7 +86,7 @@ int	my_cd(char **argv)
 			}
 		}
 	}
-	op(argv);
+	ft_op(argv);
 	pwd = getcwd(NULL, 0);
 	if (change_pwd(pwd, oldpwd) == -1)
 		return (-1);

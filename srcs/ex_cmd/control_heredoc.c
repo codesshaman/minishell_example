@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   control_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:34:51 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:09:15 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	my_sorti_2(char **str, char **res, int option, int *tub)
+int	ft_sort_2(char **str, char **res, int option, int *tub)
 {
 	close(tub[SORTI]);
 	dup2(tub[ENTRE], 1);
@@ -27,7 +27,7 @@ int	my_sorti_2(char **str, char **res, int option, int *tub)
 	return (1);
 }
 
-int	my_choose_option(char *fin, char *deb)
+int	choose_option(char *fin, char *deb)
 {
 	int	x;
 
@@ -56,7 +56,7 @@ int	my_lancement_heredoc(char *deb, char *fin)
 		close(tub[SORTI]);
 	}
 	if (pid == 0)
-		my_heredoc(deb, fin, my_choose_option(fin, deb), tub);
+		ft_heredoc(deb, fin, choose_option(fin, deb), tub);
 	if (pid != 0)
 		waitpid(pid, NULL, 0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 11:52:38 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/04 20:31:58 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:01:47 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	ex_exit(int nbr, int err, char *str)
 	printf("exit\n");
 	if (err == 1)
 	{
-		write (2, "minishell: exit: ", 17);
+		write (2, "shell: exit: ", 17);
 		write(2, str, ft_strlen(str));
 		write(2, ": numeric argument required\n", 29);
 	}
 	if (err == 2)
-		write (2, "minishell: exit: too many arguments\n", 37);
+		write (2, "shell: exit: too many arguments\n", 37);
 	listing(g_term.cmd);
 	free_all(0);
 	exit (nbr);
@@ -79,7 +79,7 @@ long long	ft_atoll(char *str)
 	return (sign * nbr);
 }
 
-void	my_exit(char **argv)
+void	ft_exit(char **argv)
 {
 	long long	nbr;
 
