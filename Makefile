@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/04 15:14:49 by mbonnet           #+#    #+#              #
-#    Updated: 2022/06/05 19:24:59 by jleslee          ###   ########.fr        #
+#    Created: 2021/04/05 15:14:49 by mbonnet           #+#    #+#              #
+#    Updated: 2022/06/07 20:13:28 by jleslee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ HEAD			=	-I includes -I libs/includes
 
 CC				=	clang
 
-CFLAGS			=	-Wall -Werror -Wextra -g 
+CFLAGS			=	-Wall -Werror -Wextra 
 
 LIBS_DIR		=	libs
 
