@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:32:47 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:00:08 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:14:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_pwd(t_cmd *cmd)
 		free(pwd);
 	}
 	else
-		printf(ROUGE"pwd: -a : option non valable\n"BLANC);
+		printf(RED"pwd: -a : option non valable\n"RESET);
 	if (g_term.cmd->pid == 0)
 		exit (0);
 	else
@@ -100,7 +100,7 @@ int	ft_env(t_cmd *cmd)
 		}
 	}
 	else
-		printf(ROUGE"env: option non valable\n"BLANC);
+		printf(RED"env: option non valable\n"RESET);
 	if (g_term.cmd->pid == 0)
 		exit (0);
 	else

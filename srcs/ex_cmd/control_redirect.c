@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_red.c                                      :+:      :+:    :+:   */
+/*   control_redirect.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:35:30 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:17:08 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:14:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	connect_redirect(void)
 		else if (ft_strncmp(g_term.cmd->red[i].red, "<", 3) == 0)
 		{
 			if (fd == -1)
-				printf(ROUGE"No such file or directory\n"BLANC);
+				printf(RED"No such file or directory\n"RESET);
 			if (fd == -1)
 				exit (1);
 			dup2(fd, 0);

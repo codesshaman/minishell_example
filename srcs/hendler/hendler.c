@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 20:46:20 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:14:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	handler_ctr_c_2(int code)
 void	handler_ctr_backslash(int code)
 {
 	(void)code;
-	printf(ROUGE"Fault (Core dumped)\n"BLANC);
+	printf(RED"Fault (Core dumped)\n"RESET);
 }

@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:52:12 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:09:18 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:14:55 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	exec_cmd(void)
 			{
 				g_term.dernier_ret = ex_building(g_term.cmd);
 				if (g_term.dernier_ret != 0)
-					dprintf(2, ROUGE"shell: file not foundr\n"BLANC);
+					dprintf(2, RED"shell: file not foundr\n"RESET);
 			}
 			g_term.cmd = g_term.cmd->next;
 			x++;
@@ -118,10 +118,10 @@ int	exec_cmd(void)
 int	message_error(void)
 {
 	if (g_term.dernier_ret == 255 || g_term.dernier_ret == 139)
-		printf(ROUGE"shell: %s : command not found\n"BLANC,
+		printf(RED"shell: %s : command not found\n"RESET,
 			g_term.cmd->cmd);
 	if (g_term.dernier_ret == -1)
-		printf(ROUGE"shell: %s : too many arguments\n"BLANC,
+		printf(RED"shell: %s : too many arguments\n"RESET,
 			g_term.cmd->cmd);
 	return (1);
 }

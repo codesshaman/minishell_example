@@ -59,7 +59,7 @@ int	init_parsing(void)
 	}
 	if (create_cmd(tab_cmd) == -1)
 	{
-		printf(ROUGE"Memory allocation error\n"BLANC);
+		printf(RED"Memory allocation error\n"RESET);
 		tab_cmd = free_double_tab((void **)tab_cmd, -1);
 		return (-2);
 	}

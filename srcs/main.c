@@ -6,10 +6,9 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 17:50:35 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 21:09:14 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:20:49 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -54,7 +53,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		g_term.str_cmd = NULL;
-		g_term.str_cmd = readline(BLEU_2"shell-3.2$ "BLANC);
+		g_term.str_cmd = readline(BLU_2"shell-3.2$ "RESET);
 		if (g_term.str_cmd == 0)
 		{
 			free(g_term.str_cmd);

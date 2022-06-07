@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:42:38 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:47:14 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_strcmp(char *str1, char *str2)
 
 int	ft_sort(char **str, char **res, int option, int *tub)
 {
-	close(tub[SORTI]);
-	dup2(tub[ENTRE], 1);
-	close(tub[ENTRE]);
+	close(tub[OUT]);
+	dup2(tub[IN], 1);
+	close(tub[IN]);
 	if (option == 0)
 		check_var_env(res);
 	write(1, (*res), ft_strlen((*res)));
@@ -96,7 +96,7 @@ int	ft_heredoc(char *deb, char *fin, int option, int *tub)
 	verif += clearing_quotes(&deb);
 	while (1)
 	{
-		str = readline(VERT"Heredoc>"BLANC);
+		str = readline(GRN"Heredoc>"RESET);
 		if (deb == NULL && ft_strcmp(fin, str) == 0 && verif == 0)
 			ft_sort(&str, &res, option, tub);
 		else if (deb == NULL && ft_strcmp(fin, str) == 0 && verif != 0)

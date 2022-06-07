@@ -6,10 +6,9 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 08:27:33 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:50:25 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:20:24 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -114,7 +113,7 @@ int	launch(void)
 	if (parsing != 0)
 	{
 		if (parsing == 3 || parsing == -1)
-			printf(ROUGE"Syntax error\n"BLANC);
+			printf(RED"Syntax error\n"RESET);
 		listing(g_term.cmd);
 		return (1);
 	}

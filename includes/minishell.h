@@ -5,11 +5,9 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 11:00:44 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 21:09:42 by jleslee          ###   ########.fr       */
+/*   Created: 2022/05/06 11:00:44 by jleslee           #+#    #+#             */
+/*   Updated: 2022/06/07 19:47:14 by jleslee          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
@@ -30,6 +28,16 @@
 # include <sys/types.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# define RED    "\x1b[31m"
+# define BLU    "\x1B[34m"
+# define BLU_2 "\e[1;34m"
+# define GRN    "\x1B[32m"
+# define YEL    "\x1B[33m"
+# define MAG    "\x1B[35m"
+# define CYN    "\x1B[36m"
+# define WHT    "\x1B[37m"
+# define RESET  "\x1B[0m"
 
 typedef struct s_intra_red
 {
@@ -69,8 +77,8 @@ typedef struct s_term
 
 extern t_term	g_term;
 
-# define ENTRE 1
-# define SORTI 0
+# define IN 1
+# define OUT 0
 
 char		*str(char *arg, int tele);
 int			check_duplication_key(char *key, int tele);
@@ -114,7 +122,6 @@ int			mess_err(char *str);
 int			check(char *str);
 int			ft_unset(char **argv);
 
-
 void		*free_tab(void **a_free);
 void		*free_double_tab(void **tab_str, int nb_str);
 void		*listing(t_cmd *cmd);
@@ -131,7 +138,6 @@ void		handler_ctr_backslash(int code);
 
 int			my_print_list_chene(t_cmd *cmd);
 int			my_print_maillon(t_cmd *cmd, int i);
-
 
 int			mise_en_place_de_lancement(int ac, char **envp);
 int			my_check_space(char *str);
@@ -167,7 +173,6 @@ char		**recup_arg(char **tab_cmd, t_cmd *cmd);
 void		ft_close_pipe(t_cmd *cmd);
 
 int			launch(void);
-
 
 int			control_var_env_quotes(t_cmd *cmd);
 

@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:24:41 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:23:57 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:47:14 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	ft_close_pipe(t_cmd *cmd)
 {
-	close(cmd->tub[ENTRE]);
-	close(cmd->tub[SORTI]);
+	close(cmd->tub[IN]);
+	close(cmd->tub[OUT]);
 }
 
 void	connect_pipe(void)
 {
 	if (ft_strncmp(g_term.cmd->pip, "|", 3) == 0)
 	{
-		close(g_term.cmd->tub[SORTI]);
-		dup2(g_term.cmd->tub[ENTRE], 1);
-		close(g_term.cmd->tub[ENTRE]);
+		close(g_term.cmd->tub[OUT]);
+		dup2(g_term.cmd->tub[IN], 1);
+		close(g_term.cmd->tub[IN]);
 	}
 	else
 	{
@@ -32,9 +32,9 @@ void	connect_pipe(void)
 	}
 	if (ft_strncmp(g_term.cmd->prev->pip, "|", 3) == 0)
 	{
-		close(g_term.cmd->prev->tub[ENTRE]);
-		dup2(g_term.cmd->prev->tub[SORTI], 0);
-		close(g_term.cmd->prev->tub[SORTI]);
+		close(g_term.cmd->prev->tub[IN]);
+		dup2(g_term.cmd->prev->tub[OUT], 0);
+		close(g_term.cmd->prev->tub[OUT]);
 	}
 }
 

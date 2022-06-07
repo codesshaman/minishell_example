@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 12:48:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/06/05 19:29:33 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/07 19:47:14 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_sort_2(char **str, char **res, int option, int *tub)
 {
-	close(tub[SORTI]);
-	dup2(tub[ENTRE], 1);
-	close(tub[ENTRE]);
+	close(tub[OUT]);
+	dup2(tub[IN], 1);
+	close(tub[IN]);
 	if (option == 0)
 		check_var_env(res);
 	write(2, (*res), ft_strlen((*res)));
@@ -51,9 +51,9 @@ int	my_lancement_heredoc(char *deb, char *fin)
 	pid = fork();
 	if (pid != 0)
 	{
-		close(tub[ENTRE]);
-		dup2(tub[SORTI], 0);
-		close(tub[SORTI]);
+		close(tub[IN]);
+		dup2(tub[OUT], 0);
+		close(tub[OUT]);
 	}
 	if (pid == 0)
 		ft_heredoc(deb, fin, choose_option(fin, deb), tub);
