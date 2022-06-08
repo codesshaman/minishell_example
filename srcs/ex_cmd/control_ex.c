@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_ex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:52:12 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:36:20 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ex_building(t_cmd *cmd)
 	else if (ft_strncmp(cpe, "unset", 10) == 0)
 		c = ft_unset(cmd->arg);
 	else if (ft_strncmp(cpe, "env", 5) == 0)
-		c = ft_env(cmd);
+		c = env(cmd);
 	else if (ft_strncmp(cpe, "exit", 5) == 0)
 		ft_exit(cmd->arg);
 	else

@@ -6,13 +6,13 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 08:24:57 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:19:03 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/08 20:56:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_space_2(void)
+int	check_space(void)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ int	init_parsing(void)
 	char	**tab_cmd;
 
 	tab_cmd = NULL;
-	if (check_space_2() == -1)
+	if (check_space() == -1)
 		return (2);
 	if (init_parsing_2() == -1)
 		return (-1);

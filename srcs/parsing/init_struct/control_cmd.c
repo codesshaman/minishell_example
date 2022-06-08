@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 23:10:16 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:15:46 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,19 @@ char	**return_path_env_2(void)
 	int		i;
 
 	i = 0;
-	if (!g_term.ft_env)
+	if (!g_term.env)
 		return (NULL);
-	while (g_term.ft_env[i].key)
+	while (g_term.env[i].key)
 	{
-		if (ft_strncmp(g_term.ft_env[i].key,
-				"PATH=", ft_strlen(g_term.ft_env[i].key)) == 0)
+		if (ft_strncmp(g_term.env[i].key,
+				"PATH=", ft_strlen(g_term.env[i].key)) == 0)
 		{
-			path = ft_split(g_term.ft_env[i].var, ':');
+			path = ft_split(g_term.env[i].var, ':');
 			break ;
 		}
 		i++;
 	}
-	if (!g_term.ft_env[i].key)
+	if (!g_term.env[i].key)
 		return (NULL);
 	return (path);
 }

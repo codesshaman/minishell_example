@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_var_env_utile.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:53:40 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:39:09 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ char	*return_var_env(char *str, int i)
 	{
 		return (ft_itoa(g_term.dernier_ret));
 	}
-	while (g_term.ft_env && g_term.ft_env[y].key)
+	while (g_term.env && g_term.env[y].key)
 	{
-		if (ft_strncmp(g_term.ft_env[y].key, key
-				, ft_strlen(g_term.ft_env[y].key)) == 0)
+		if (ft_strncmp(g_term.env[y].key, key
+				, ft_strlen(g_term.env[y].key)) == 0)
 		{
-			res = ft_strdup(g_term.ft_env[y].var);
+			res = ft_strdup(g_term.env[y].var);
 			key = free_tab((void **)&key);
 			return (res);
 		}

@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:00:44 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:05:59 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_term
 	char	**envp;
 	char	*str_cmd;
 	t_cmd	*cmd;
-	t_env	*ft_env;
+	t_env	*env;
 	int		dernier_ret;
 }	t_term;
 
@@ -98,7 +98,7 @@ int			check_building(t_cmd *cmd);
 int			option(char *str);
 int			ft_echo(char **argv);
 int			ft_pwd(t_cmd *cmd);
-int			ft_env(t_cmd *cmd);
+int			env(t_cmd *cmd);
 int			ex_exit(int nbr, int err, char *str);
 int			verif_arg(char *str);
 long long	ft_atoll(char *str);

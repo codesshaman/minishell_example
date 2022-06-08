@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_env_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:00:02 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:31:26 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	check_duplication_key(char *key, int index)
 	i = 0;
 	if (index == 1)
 	{
-		while (g_term.ft_env[i].key)
+		while (g_term.env[i].key)
 		{
-			if (ft_strncmp_2(g_term.ft_env[i].key, key, 1000) == 0)
+			if (ft_strncmp_2(g_term.env[i].key, key, 1000) == 0)
 				return (i);
 			i++;
 		}
@@ -66,16 +66,16 @@ int	add_new_env(char **key, char **var)
 	t_env	*new;
 
 	len = 0;
-	while (g_term.ft_env[len].key)
+	while (g_term.env[len].key)
 		len++;
 	new = malloc(sizeof(t_env) * (len + 2));
 	if (!new)
 		return (-1);
 	len = 0;
-	while (g_term.ft_env[len].key)
+	while (g_term.env[len].key)
 	{
-		new[len].key = g_term.ft_env[len].key;
-		new[len].var = g_term.ft_env[len].var;
+		new[len].key = g_term.env[len].key;
+		new[len].var = g_term.env[len].var;
 		len++;
 	}
 	new[len].key = *key;
@@ -83,8 +83,8 @@ int	add_new_env(char **key, char **var)
 	len++;
 	new[len].key = NULL;
 	new[len].var = NULL;
-	free(g_term.ft_env);
-	g_term.ft_env = new;
+	free(g_term.env);
+	g_term.env = new;
 	return (1);
 }
 
@@ -97,9 +97,9 @@ int	added_arg_ei(char **key, char **var)
 	{
 		if ((*key)[ft_strlen(*key) - 1] != '=')
 			return (1);
-		free(g_term.ft_env[check].var);
-		g_term.ft_env[check].key = *key;
-		g_term.ft_env[check].var = *var;
+		free(g_term.env[check].var);
+		g_term.env[check].key = *key;
+		g_term.env[check].var = *var;
 	}
 	if (check_duplication_key(*key, 1) == -1)
 	{

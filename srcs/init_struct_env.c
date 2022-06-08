@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 08:32:43 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:19:41 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,18 @@ int	init_struct_env(void)
 	i = 0;
 	while (g_term.envp[j])
 		j++;
-	g_term.ft_env = malloc(sizeof(t_env) * (j + 1));
-	if (!g_term.ft_env)
+	g_term.env = malloc(sizeof(t_env) * (j + 1));
+	if (!g_term.env)
 		return (-1);
 	while (i < j)
 	{
-		g_term.ft_env[i].key = env_key(g_term.envp[i]);
-		g_term.ft_env[i].var = env_var(g_term.envp[i]);
-		if (!g_term.ft_env[i].var || !g_term.ft_env[i].key)
+		g_term.env[i].key = env_key(g_term.envp[i]);
+		g_term.env[i].var = env_var(g_term.envp[i]);
+		if (!g_term.env[i].var || !g_term.env[i].key)
 			return (-1);
 		i++;
 	}
-	g_term.ft_env[i].key = NULL;
-	g_term.ft_env[i].var = NULL;
+	g_term.env[i].key = NULL;
+	g_term.env[i].var = NULL;
 	return (1);
 }

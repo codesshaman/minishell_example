@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:16:53 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:33:05 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ t_env	*copy_env(void)
 	int		i;
 
 	i = 0;
-	while (g_term.ft_env[i].key)
+	while (g_term.env[i].key)
 		i++;
 	env = malloc(sizeof(t_env) * (i + 1));
 	if (!env)
 		return (NULL);
 	i = 0;
-	while (g_term.ft_env[i].key)
+	while (g_term.env[i].key)
 	{
-		env[i].key = g_term.ft_env[i].key;
-		env[i].var = g_term.ft_env[i].var;
+		env[i].key = g_term.env[i].key;
+		env[i].var = g_term.env[i].var;
 		i++;
 	}
 	env[i].key = NULL;

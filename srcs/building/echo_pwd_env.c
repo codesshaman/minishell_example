@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_pwd_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 16:32:47 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:34:40 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,21 @@ int	ft_pwd(t_cmd *cmd)
 		return (0);
 }
 
-int	ft_env(t_cmd *cmd)
+int	env(t_cmd *cmd)
 {
 	int	i;
 
 	i = 0;
 	if (!cmd->arg[1])
 	{
-		while (g_term.ft_env[i].key)
+		while (g_term.env[i].key)
 		{
-			if (g_term.ft_env[i].key[ft_strlen(
-						g_term.ft_env[i].key) - 1] == '=')
+			if (g_term.env[i].key[ft_strlen(
+						g_term.env[i].key) - 1] == '=')
 			{
-				printf("%s", g_term.ft_env[i].key);
-				if (g_term.ft_env[i].var)
-					printf("%s", g_term.ft_env[i].var);
+				printf("%s", g_term.env[i].key);
+				if (g_term.env[i].var)
+					printf("%s", g_term.env[i].var);
 				printf("\n");
 			}
 			i++;
