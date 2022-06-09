@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:47:47 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/09 20:17:17 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 20:41:17 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,21 @@ char	*return_ellement(char **str, int *i)
 {
 	char	*new;
 	int		qu;
-	int		j;
 
-	j = 0;
 	qu = 0;
 	new = NULL;
 	while (ft_whitespace((*str)[*i]) == 1)
 		(*i)++;
-	while ((*str)[*i + j])
+	while ((*str)[*i])
 	{
-		check_quote(&qu, (*str)[*i + j]);
-		if (!(*str)[*i + j] || (qu == 0 && (ft_whitespace((*str)[*i + j]) == 1
-			|| check_redirect_type(&(*str)[*i + j]) > 0)))
+		check_quote(&qu, (*str)[*i]);
+		if (!(*str)[*i] || (qu == 0 && (ft_whitespace((*str)[*i]) == 1
+			|| check_redirect_type(&(*str)[*i]) > 0)))
 			return (new);
 		else
 		{
-			new = ft_strmicrojoin(&new, (*str)[*i + j]);
-			(*str)[*i + j] = ' ';
+			new = ft_strmicrojoin(&new, (*str)[*i]);
+			(*str)[*i] = ' ';
 		}
 		(*i)++;
 	}
