@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:40:08 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:17:13 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 19:54:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	add_new_element(t_cmd *tmp)
 	else
 	{
 		tmp_1 = g_term.cmd;
-		while (++i < g_term.nb_maillon)
+		while (++i < g_term.nb_node)
 			g_term.cmd = g_term.cmd->next;
 		g_term.cmd->next = tmp;
 		tmp_1->prev = tmp;
@@ -56,7 +56,7 @@ int	add_new_element(t_cmd *tmp)
 		tmp->next = tmp_1;
 		g_term.cmd = tmp_1;
 	}
-	g_term.nb_maillon++;
+	g_term.nb_node++;
 	return (1);
 }
 
@@ -65,7 +65,7 @@ int	create_cmd(char **tab_cmd)
 	int		i;
 
 	i = 0;
-	g_term.nb_maillon = 0;
+	g_term.nb_node = 0;
 	while (tab_cmd[i])
 	{
 		if (add_new_element(init_node(tab_cmd[i])) == -1)

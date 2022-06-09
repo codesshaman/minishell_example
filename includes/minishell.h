@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:00:44 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 20:03:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct str_env
 
 typedef struct s_term
 {
-	int		nb_maillon;
+	int		nb_node;
 	char	**envp;
 	char	*str_cmd;
 	t_cmd	*cmd;
@@ -126,7 +126,7 @@ int			check_redirect(int gu, char c);
 int			sub_char(char **str, int x);
 char		**init_tab_cmd(char *str);
 int			create_cmd(char **tab_cmd);
-int			check_redirect_pipe(char *str);
+int			check_redirect_type(char *str);
 char		*return_ellement(char **str, int *x);
 char		*take_redirect(int choose, int *x, char **str);
 

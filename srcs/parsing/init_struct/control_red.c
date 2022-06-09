@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:47:37 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:16:49 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 20:03:54 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	return_red_2(char **str, int *i, t_intra_red **red)
 	int			type_red;
 
 	type_red = 0;
-	type_red = check_redirect_pipe(&(*str)[*i]);
+	type_red = check_redirect_type(&(*str)[*i]);
 	if (type_red < 5)
 		return (-1);
 	tmp = take_redirect(type_red, i, str);
@@ -72,15 +72,15 @@ t_intra_red	*return_red(char **str)
 {
 	int			i;
 	t_intra_red	*red;
-	int			gu;
+	int			quote;
 
 	i = -1;
-	gu = 0;
+	quote = 0;
 	red = NULL;
 	while ((*str)[++i])
 	{
-		check_quote(&gu, (*str)[i]);
-		if (gu == 0)
+		check_quote(&quote, (*str)[i]);
+		if (quote == 0)
 		{
 			if (return_red_2(str, &i, &red) == -1)
 				continue ;

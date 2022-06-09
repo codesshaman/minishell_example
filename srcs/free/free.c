@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:01:20 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:10:41 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 19:54:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*listing(t_cmd *cmd)
 	g_term.str_cmd = free_tab((void **)&(g_term.str_cmd));
 	if (!cmd)
 		return (NULL);
-	i = g_term.nb_maillon;
+	i = g_term.nb_node;
 	while (i > 0)
 	{
 		tmp = cmd->next;
@@ -66,7 +66,7 @@ void	*listing(t_cmd *cmd)
 		i--;
 		cmd = tmp;
 	}
-	g_term.nb_maillon = 0;
+	g_term.nb_node = 0;
 	g_term.cmd = NULL;
 	return (NULL);
 }

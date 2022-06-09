@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:24:41 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:38:19 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:54:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	close_pipe(void)
 
 	i = 0;
 	tmp = g_term.cmd;
-	while (i++ < g_term.nb_maillon)
+	while (i++ < g_term.nb_node)
 	{
 		ft_close_pipe(g_term.cmd);
 		g_term.cmd = g_term.cmd->next;
@@ -60,7 +60,7 @@ void	creat_pipe(void)
 
 	i = 0;
 	tmp = g_term.cmd;
-	while (i++ < g_term.nb_maillon)
+	while (i++ < g_term.nb_node)
 	{
 		pipe(g_term.cmd->tub);
 		g_term.cmd = g_term.cmd->next;

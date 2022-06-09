@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_ex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 08:27:33 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/07 20:40:07 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:54:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	creat_fork(void)
 	verif = 0;
 	verif_2 = -1;
 	tmp = g_term.cmd;
-	while (i++ < g_term.nb_maillon)
+	while (i++ < g_term.nb_node)
 	{
 		g_term.cmd->pid = -1;
 		control_logic_operation(&verif, &verif_2);
@@ -75,7 +75,7 @@ void	waiting_loop(void)
 	tmp = g_term.cmd;
 	if (g_term.cmd->pid != 0)
 	{
-		while (i++ < g_term.nb_maillon)
+		while (i++ < g_term.nb_node)
 		{
 			waitpid(g_term.cmd->pid, &g_term.dernier_ret, 0);
 			if (WIFEXITED(g_term.dernier_ret))

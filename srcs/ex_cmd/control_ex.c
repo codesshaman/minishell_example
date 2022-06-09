@@ -6,7 +6,7 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:52:12 by einterdi          #+#    #+#             */
-/*   Updated: 2022/06/08 20:41:54 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 19:54:31 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	exec_cmd(void)
 	x = 0;
 	if (g_term.cmd->pid != 0)
 	{
-		while (x < g_term.nb_maillon)
+		while (x < g_term.nb_node)
 		{
 			if (check_building(g_term.cmd) == 1
 				&& g_term.cmd->pip[0] == ';'
