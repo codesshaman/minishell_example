@@ -6,16 +6,16 @@
 /*   By: jleslee <jleslee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:38:44 by jleslee           #+#    #+#             */
-/*   Updated: 2022/06/07 20:31:00 by jleslee          ###   ########.fr       */
+/*   Updated: 2022/06/09 20:44:09 by jleslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libs.h"
 
-int	ft_whitespace(char cara)
+int	ft_whitespace(char c)
 {
-	if (cara == ' ' || cara == '\t' || cara == '\n'
-		|| cara == '\v' || cara == '\r' || cara == '\f')
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\r' || c == '\f')
 		return (1);
 	return (0);
 }
